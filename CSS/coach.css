@@ -9,7 +9,7 @@
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
-    img  { display: block; max-width: 100%; }
+    img  { display: block; max-width: 60%; }
     a    { text-decoration: none; }
 
     /* ── NAV ──────────────────────────────────────────── */
@@ -180,7 +180,7 @@
     .join-links a { color: rgba(255,255,255,0.4); font-size: .8rem; letter-spacing: 1.5px; font-weight: 600; text-transform: uppercase; transition: color .2s; }
     .join-links a:hover { color: var(--white); }
 
-    /* ── FOOTER ───────────────────────────────────────── */
+    /* ── FOOTER ─────────────────────────────────────────*/
      footer{background:#050505;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
     .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
     .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
@@ -204,7 +204,8 @@
     .btn-register:hover{background:var(--red);color:var(--white)}{display:flex;flex-direction:column;align-items:center;gap:.3rem}
     .qr-block .qr-label{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
     .qr-placeholder{width:108px;height:108px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;box-sizing:border-box;}
-    .qr-placeholder canvas,.qr-placeholder img{width:100px!important;height:100px!important;display:block}
+    .qr-placeholder>div{width:100px!important;height:100px!important;overflow:hidden;flex-shrink:0}
+    .qr-placeholder canvas,.qr-placeholder img,.qr-placeholder table{width:100px!important;height:100px!important;display:block;max-width:100px}
     .spaces-limited{font-size:.62rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1px solid var(--red);padding:3px 8px;animation:blink 2s infinite;}
     @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
 

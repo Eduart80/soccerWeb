@@ -445,7 +445,7 @@
     .cta-center p em{color:var(--red);font-style:normal}
 
     /* Join block */
-    .join-block{
+    .join-block {
       padding:24px 22px;
       display:flex;flex-direction:column;justify-content:center;
     }
@@ -479,10 +479,12 @@
     .qr-block{display:flex;flex-direction:column;align-items:center;gap:.3rem}
     .qr-block .qr-label{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
     .qr-placeholder{
-      width:52px;height:52px;background:var(--white);border-radius:2px;
+      width:108px;height:108px;background:var(--white);border-radius:4px;
       display:flex;align-items:center;justify-content:center;overflow:hidden;
+      padding:4px;box-sizing:border-box;
     }
-    .qr-placeholder svg{width:44px;height:44px}
+    .qr-placeholder svg{width:100px;height:100px}
+    .qr-placeholder canvas, .qr-placeholder img{width:100px!important;height:100px!important;display:block}
     .spaces-limited{
       font-size:.62rem;font-weight:800;letter-spacing:2px;
       text-transform:uppercase;color:var(--red);
@@ -495,9 +497,9 @@
        FOOTER
     ═══════════════════════════════════════════════════ */
     footer{background:#050505;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
-    .footer-top{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:3.5rem;margin-bottom:2rem}
-    .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem}
-    .footer-brand p{color:rgba(255,255,255,.35);font-size:.78rem;line-height:1.7;max-width:280px}
+    .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
+    .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
+    .footer-brand p{color:rgba(255,255,255,.35);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
     footer h4{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:3px;color:var(--red);margin-bottom:.8rem}
     footer ul{display:flex;flex-direction:column;gap:.45rem}
     footer ul a,footer ul li{color:rgba(255,255,255,.4);font-size:.78rem}
