@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Soccer Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:  #0A1628;
+      --green: #00A651;
+      --green-dark: #007A3D;
+      --gold:  #FFD700;
+      --white: #FFFFFF;
+      --gray:  #F4F6F9;
+      --text-muted: #8A9BB0;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--navy); }
+    img  { display: block; max-width: 100%; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 6%;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(8px);
+    }
+    .logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.7rem; color: var(--white); letter-spacing: 2px; }
+    .logo span { color: var(--green); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { text-decoration: none; color: rgba(255,255,255,0.8); font-size: .9rem; font-weight: 500; transition: color .2s; }
+    nav ul a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--green); color: var(--white);
+      padding: 10px 22px; border-radius: 4px; font-size: .9rem; font-weight: 600;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom, rgba(10,22,40,.75) 0%, rgba(10,22,40,.55) 60%, rgba(10,22,40,.9) 100%),
+        url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600&auto=format&fit=crop') right/cover no-repeat;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 0 6%;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(0, 166, 81, 0.45); color: var(--white);
+      font-size: .75rem; font-weight: 700; letter-spacing: 3px;
+      padding: 6px 16px; margin-bottom: 1.4rem;
+      text-transform: uppercase;
+      border-radius: 15px;
+      
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      line-height: 1; color: var(--white); margin-bottom: 1.2rem;
+    }
+    .hero h1 span { color: var(--gold); }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,.8); max-width: 560px; line-height: 1.7;
+      margin-bottom: 2.2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 16px 36px; border-radius: 4px; font-weight: 700;
+      font-size: 1rem; text-decoration: none; letter-spacing: .5px;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,.35); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.6); color: var(--white);
+      padding: 14px 34px; border-radius: 4px; font-weight: 600;
+      font-size: 1rem; text-decoration: none; transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 4rem;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--gold); line-height: 1; }
+    .stat-label { font-size: .8rem; color: rgba(255,255,255,.6); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── SECTION SHARED ───────────────────────────── */
+    section { padding: 90px 6%; }
+    .section-tag {
+      font-size: .75rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green); margin-bottom: .6rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--text-muted); max-width: 520px; line-height: 1.7; font-size: .95rem; }
+
+    /* ── WHY US ───────────────────────────────────── */
+    .why { background: var(--navy); color: var(--white); }
+    .why .section-title { color: var(--white); }
+    .why .section-sub   { color: rgba(255,255,255,.55); }
+    .why-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px; padding: 2rem;
+      transition: border-color .2s, background .2s;
+    }
+    .why-card:hover { background: rgba(0,166,81,.1); border-color: var(--green); }
+    .why-icon { font-size: 2.4rem; margin-bottom: 1rem; }
+    .why-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .why-card p  { font-size: .88rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+
+    /* ── PROGRAMS ─────────────────────────────────── */
+    .programs { background: var(--gray); }
+    .programs-header { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+    .programs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;
+    }
+    .program-card {
+      background: var(--white); border-radius: 12px; overflow: hidden;
+      box-shadow: 0 2px 12px rgba(10,22,40,.08);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .program-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(10,22,40,.12); }
+    .program-img {
+      height: 200px;
+      background: var(--navy) center/cover no-repeat;
+      position: relative; overflow: hidden;
+    }
+    .program-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,22,40,.15) 0%, rgba(10,22,40,.45) 100%);
+    }
+    .program-body { padding: 1.4rem; }
+    .program-age {
+      display: inline-block; background: var(--gray);
+      font-size: .7rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--green); padding: 4px 10px; border-radius: 20px; margin-bottom: .7rem;
+      text-transform: uppercase;
+    }
+    .program-body h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: .4rem; }
+    .program-body p  { font-size: .85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+    .program-link    { font-size: .85rem; font-weight: 700; color: var(--green); text-decoration: none; }
+    .program-link:hover { text-decoration: underline; }
+
+    /* ── COACHES ──────────────────────────────────── */
+    .coaches-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .coach-card { text-align: center; }
+    .coach-avatar {
+      width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 1rem;
+      background: var(--gray); display: flex; align-items: center; justify-content: center;
+      font-size: 2.8rem; border: 3px solid var(--green);
+    }
+    .coach-card h3 { font-weight: 700; font-size: 1rem; margin-bottom: .2rem; }
+    .coach-card .role { font-size: .82rem; color: var(--green); font-weight: 600; margin-bottom: .5rem; }
+    .coach-card p  { font-size: .82rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── TESTIMONIALS ─────────────────────────────── */
+    .testimonials { background: var(--navy); color: var(--white); }
+    .testimonials .section-title { color: var(--white); }
+    .testi-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .testi-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px; padding: 1.8rem;
+    }
+    .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testi-card p { font-size: .9rem; color: rgba(255,255,255,.75); line-height: 1.7; margin-bottom: 1.2rem; }
+    .testi-author { font-weight: 700; font-size: .85rem; }
+    .testi-role   { font-size: .78rem; color: rgba(255,255,255,.4); margin-top: 2px; }
+
+    /* ── CTA BANNER ───────────────────────────────── */
+    .cta-banner {
+      background: var(--green); padding: 70px 6%;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); margin-bottom: .8rem;
+    }
+    .cta-banner p { color: rgba(255,255,255,.8); max-width: 480px; margin-bottom: 2rem; font-size: .95rem; }
+    .btn-dark {
+      background: var(--navy); color: var(--white);
+      padding: 16px 40px; border-radius: 4px; font-weight: 700;
+      font-size: 1rem; text-decoration: none; transition: background .2s;
+    }
+    .btn-dark:hover { background: #0f1e38; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: #060E1A; color: rgba(255,255,255,.4);
+      padding: 40px 6%; display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+      font-size: .82rem;
+    }
+    footer .logo { font-size: 1.2rem; }
+    footer a { color: rgba(255,255,255,.4); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero-stats { gap: 1.5rem; }
+      .hero {
+        background:
+          linear-gradient(to bottom, rgba(10,22,40,.75) 0%, rgba(10,22,40,.55) 60%, rgba(10,22,40,.9) 100%),
+          url('./image/phone-screen.png') right/cover no-repeat;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="L">
+      <img src="./image/logo.jpg" alt="logo"
+      style="width: 100px;"
+      />
+    </div>
+    <div class="logo">Eagle<span>Star</span></div>
+    <ul>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#coaches">Coaches</a></li>
+      <li><a href="#testimonials">Stories</a></li>
+    </ul>
+    <a href="#enroll" class="nav-cta">Enroll Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-tag">⚽ Professional Soccer Development</span>
+    <h1>Train Like a<br /><span>Champion</span></h1>
+    <p>
+      We develop complete players — technical skill, tactical intelligence, and the
+      winning mindset. From grassroots to elite, your journey starts here.
+    </p>
+    <div class="hero-btns">
+      <a href="#enroll" class="btn-primary">Start Your Trial</a>
+      <a href="#programs" class="btn-outline">View Programs</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">450+</div>
+        <div class="stat-label">Players Trained</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Pro Coaches</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Years of Excellence</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why" id="why">
+    <div class="section-tag">Why Choose Us</div>
+    <div class="section-title">Built to Develop<br />Real Players</div>
+    <p class="section-sub">Every session is designed around real-world match situations. No busywork — just purposeful training.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🎯</div>
+        <h3>Position-Specific Coaching</h3>
+        <p>Tailored drills for forwards, midfielders, defenders, and goalkeepers — not one-size-fits-all sessions.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🧠</div>
+        <h3>Tactical Intelligence</h3>
+        <p>We train players to read the game, make faster decisions, and dominate their positions mentally.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📈</div>
+        <h3>Progress Tracking</h3>
+        <p>Monthly assessments, video review, and personal development plans so players and parents see real growth.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <h3>Competitive Exposure</h3>
+        <p>Regular tournaments, scout days, and match opportunities at regional and national levels.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="programs" id="programs">
+    <div class="programs-header">
+      <div>
+        <div class="section-tag">Programs</div>
+        <div class="section-title">Find Your Level</div>
+      </div>
+      <p class="section-sub">Age-appropriate programs with clear progression paths from beginner to elite.</p>
+    </div>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-img" style="background-image:url('https://images.unsplash.com/photo-1526232761682-d26e03ac148e?w=600&h=200&fit=crop&auto=format')"></div>
+        <div class="program-body">
+          <span class="program-age">Ages 5–8</span>
+          <h3>Little Kickers</h3>
+          <p>Fun-first, foundational ball skills, coordination, and love for the game. Small groups, big smiles.</p>
+          <a href="#enroll" class="program-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-img" style="background-image:url('https://images.unsplash.com/photo-1744565473172-a3c64b1e1bbb?w=600&h=200&fit=crop&auto=format')"></div>
+        <div class="program-body">
+          <span class="program-age">Ages 9–13</span>
+          <h3>Development Squad</h3>
+          <p>Technical mastery, first tactics, 1v1 domination, and introduction to team shape and structure.</p>
+          <a href="#enroll" class="program-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-img" style="background-image:url('https://images.unsplash.com/photo-1759674794418-26371e3851a9?w=600&h=200&fit=crop&auto=format')"></div>
+        <div class="program-body">
+          <span class="program-age">Ages 14–18</span>
+          <h3>Elite Academy</h3>
+          <p>High-performance training, video analysis, scout exposure, and pathways to college or professional soccer.</p>
+          <a href="#enroll" class="program-link">Learn more →</a>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-img" style="background-image:url('https://images.unsplash.com/flagged/photo-1571771710019-ca58cf80f225?w=600&h=200&fit=crop&auto=format')"></div>
+        <div class="program-body">
+          <span class="program-age">Adults</span>
+          <h3>Adult Skill Camps</h3>
+          <p>Weekend camps for adults who love the game — fitness, technique, and fun 6v6 scrimmages.</p>
+          <a href="#enroll" class="program-link">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COACHES -->
+  <section class="coaches" id="coaches">
+    <div class="section-tag">Our Coaches</div>
+    <div class="section-title">Learn From the Best</div>
+    <p class="section-sub">Every coach holds a UEFA or USSF license with active playing or professional coaching experience.</p>
+    <div class="coaches-grid">
+      <div class="coach-card">
+        <div class="coach-avatar">👨‍🏫</div>
+        <h3>Carlos Mendes</h3>
+        <div class="role">Head Coach · UEFA B</div>
+        <p>12 years coaching youth academies across Spain and the US. Former semi-pro midfielder.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">👩‍🏫</div>
+        <h3>Sofia Ramos</h3>
+        <div class="role">Technical Director · USSF A</div>
+        <p>NCAA Division I player, specialized in player development models and 1v1 defending.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">🧤</div>
+        <h3>Marcus Reid</h3>
+        <div class="role">Goalkeeper Coach</div>
+        <p>Former professional goalkeeper with 8 years of top-flight experience. Certified GK specialist.</p>
+      </div>
+      <div class="coach-card">
+        <div class="coach-avatar">⚡</div>
+        <h3>Dani Okafor</h3>
+        <div class="role">Speed & Conditioning</div>
+        <p>S&C specialist focused on athletic longevity, sprint mechanics, and injury prevention for young athletes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-tag">Success Stories</div>
+    <div class="section-title" style="color:#fff">What Families Say</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"My son joined at age 10 with no experience. Two years later he's captain of his school team. The coaches here genuinely care about every kid."</p>
+        <div class="testi-author">Maria L.</div>
+        <div class="testi-role">Parent of Development Squad player</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"The Elite Academy program got me noticed by three college scouts. I signed my scholarship offer last month. This place changed my life."</p>
+        <div class="testi-author">Tyler K.</div>
+        <div class="testi-role">Elite Academy graduate, age 17</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"As a parent you want to trust who you leave your kids with. The coaches are professional, communication is great, and results speak for themselves."</p>
+        <div class="testi-author">James P.</div>
+        <div class="testi-role">Parent of two academy players</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner" id="enroll">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Book a free trial session — no commitment. Come feel the difference a professional environment makes.</p>
+    <a href="mailto:info@elitefc.com" class="btn-dark">Book a Free Trial Today</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">EAGLE<span style="color:var(--green)">STAR</span></div>
+    <span>© 2026 Elite Soccer Academy. All rights reserved.</span>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

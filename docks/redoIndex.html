@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle Stars Soccer Academy — Master the Ball. Master the Game.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:  #080808;
+      --dark:   #111111;
+      --red:    #cc1e2e;
+      --red2:   #e8263a;
+      --gold:   #d4960a;
+      --gold2:  #f0b429;
+      --white:  #ffffff;
+      --muted:  #888888;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 5%;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(204,30,46,0.3);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 52px; width: 52px; object-fit: contain; }
+    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: 2px; line-height: 1.1; }
+    .nav-logo-text span { color: var(--red); display: block; }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: rgba(255,255,255,0.8); font-size: .88rem; font-weight: 500; transition: color .2s; letter-spacing: .5px; }
+    nav ul a:hover { color: var(--gold2); }
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      padding: 10px 24px; font-size: .88rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      border: 2px solid var(--red); transition: all .2s;
+    }
+    .nav-cta:hover { background: transparent; color: var(--red); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 26px; height: 2px; background: var(--white); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .hero-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0; opacity: 0.35;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(180deg, rgba(8,8,8,.5) 0%, rgba(8,8,8,.3) 50%, rgba(8,8,8,.9) 100%);
+    }
+    .hero-content { position: relative; z-index: 2; padding: 0 5%; max-width: 900px; }
+    .hero-logo { width: 160px; height: 160px; object-fit: contain; margin: 0 auto 1.5rem; filter: drop-shadow(0 0 30px rgba(204,30,46,0.6)); }
+    .hero-tag {
+      display: inline-block; background: rgba(204,30,46,0.2); border: 1px solid rgba(204,30,46,0.5);
+      color: var(--gold2); font-size: .7rem; font-weight: 700; letter-spacing: 4px;
+      padding: 6px 18px; margin-bottom: 1.2rem; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: .95; letter-spacing: 2px; margin-bottom: .5rem;
+    }
+    .hero h1 em { color: var(--red); font-style: normal; }
+    .hero-sub {
+      font-size: clamp(.85rem, 2vw, 1.1rem); color: rgba(255,255,255,0.7);
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 2.5rem;
+    }
+    .hero-sub span { color: var(--gold2); }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: var(--white);
+      padding: 16px 40px; font-weight: 700; font-size: .95rem;
+      letter-spacing: 1.5px; text-transform: uppercase; border: 2px solid var(--red);
+      transition: all .25s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-primary:hover { background: transparent; color: var(--red); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      padding: 16px 40px; font-weight: 700; font-size: .95rem;
+      letter-spacing: 1.5px; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.4);
+      transition: all .25s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .btn-outline:hover { border-color: var(--gold2); color: var(--gold2); }
+    .hero-scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 2; }
+    .hero-scroll span { display: block; width: 2px; height: 50px; background: linear-gradient(to bottom, var(--red), transparent); margin: 0 auto; }
+
+    /* ── SECTION BASE ─────────────────────────────────────── */
+    section { padding: 100px 5%; }
+    .section-tag {
+      display: inline-block; color: var(--red); font-size: .72rem;
+      font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 2px; line-height: 1;
+    }
+    .section-title em { color: var(--red); font-style: normal; }
+    .divider { width: 60px; height: 3px; background: var(--red); margin: 1.2rem 0 2rem; }
+
+    /* ── STATS BAR ─────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--red);
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      text-align: center; padding: 0;
+    }
+    .stat-item { padding: 30px 20px; border-right: 1px solid rgba(255,255,255,0.2); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: 2px; color: var(--white); }
+    .stat-num span { color: var(--gold2); }
+    .stat-label { font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-top: .3rem; }
+
+    /* ── PHILOSOPHY ────────────────────────────────────────── */
+    .philosophy { background: var(--dark); }
+    .philosophy-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .philosophy-img { position: relative; }
+    .philosophy-img img { width: 100%; border: 2px solid rgba(204,30,46,0.3); }
+    .philosophy-img::before {
+      content: ''; position: absolute; inset: -8px; z-index: -1;
+      border: 2px solid rgba(212,150,10,0.3);
+    }
+    .philosophy-steps { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+    .step { display: flex; align-items: flex-start; gap: 1.2rem; }
+    .step-num {
+      flex-shrink: 0; width: 40px; height: 40px;
+      background: var(--red); display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 1px;
+    }
+    .step-text strong { display: block; font-weight: 700; color: var(--gold2); margin-bottom: .2rem; letter-spacing: 1px; text-transform: uppercase; font-size: .88rem; }
+    .step-text p { color: rgba(255,255,255,0.65); font-size: .88rem; line-height: 1.6; }
+
+    /* ── COACH ─────────────────────────────────────────────── */
+    .coach { background: var(--black); }
+    .coach-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .coach-img { position: relative; overflow: hidden; }
+    .coach-img img { width: 100%; }
+    .coach-img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--gold));
+    }
+    .coach-name {
+      font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: 3px; line-height: 1; margin-bottom: .5rem;
+    }
+    .coach-name em { color: var(--red); font-style: normal; }
+    .coach-title { color: var(--gold2); font-size: .8rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .coach-bio { color: rgba(255,255,255,0.7); line-height: 1.8; font-size: .95rem; margin-bottom: 2rem; }
+    .coach-badges { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .badge {
+      padding: 8px 18px; border: 1px solid rgba(204,30,46,0.5);
+      font-size: .75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ── PROGRAMS ──────────────────────────────────────────── */
+    .programs { background: var(--dark); }
+    .programs-grid { max-width: 1200px; margin: 3rem auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px; }
+    .program-card {
+      background: var(--black); padding: 2.5rem 2rem;
+      border-top: 3px solid transparent; transition: border-color .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .program-card::before {
+      content: ''; position: absolute; inset: 0; opacity: 0;
+      background: linear-gradient(135deg, rgba(204,30,46,0.08) 0%, transparent 60%);
+      transition: opacity .3s;
+    }
+    .program-card:hover { border-top-color: var(--red); transform: translateY(-4px); }
+    .program-card:hover::before { opacity: 1; }
+    .program-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .program-age {
+      display: inline-block; background: rgba(204,30,46,0.15); color: var(--red);
+      font-size: .7rem; font-weight: 700; letter-spacing: 2px; padding: 4px 12px;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .program-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 2px; margin-bottom: .8rem; }
+    .program-card p { color: rgba(255,255,255,0.6); font-size: .88rem; line-height: 1.7; }
+
+    /* ── GALLERY ───────────────────────────────────────────── */
+    .gallery { background: var(--black); padding-top: 80px; padding-bottom: 80px; }
+    .gallery-title-wrap { max-width: 1200px; margin: 0 auto 2.5rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      gap: 4px;
+    }
+    .gallery-item { overflow: hidden; position: relative; cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; display: block; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 2; }
+
+    /* ── JOIN CTA ──────────────────────────────────────────── */
+    .join {
+      background:
+        linear-gradient(135deg, rgba(8,8,8,.95) 0%, rgba(30,5,5,.9) 100%),
+        url('image/IMG-20260427-WA0010.jpg') center/cover no-repeat;
+      text-align: center; padding: 120px 5%;
+    }
+    .join-inner { max-width: 750px; margin: 0 auto; }
+    .join h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); letter-spacing: 2px; line-height: 1; margin-bottom: 1rem; }
+    .join h2 em { color: var(--red); font-style: normal; }
+    .join p { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+    .join-location { display: flex; align-items: center; justify-content: center; gap: .5rem; color: var(--gold2); font-size: .82rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2.5rem; }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: #050505; border-top: 1px solid rgba(204,30,46,0.25);
+      padding: 60px 5% 30px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+    .footer-brand img { height: 70px; object-fit: contain; margin-bottom: 1rem; }
+    .footer-brand p { color: rgba(255,255,255,0.5); font-size: .85rem; line-height: 1.7; max-width: 300px; }
+    footer h4 { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: 3px; color: var(--red); margin-bottom: 1.2rem; }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    footer ul a { color: rgba(255,255,255,0.55); font-size: .85rem; transition: color .2s; }
+    footer ul a:hover { color: var(--gold2); }
+    .footer-contact li { color: rgba(255,255,255,0.55); font-size: .85rem; line-height: 1.6; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: rgba(255,255,255,0.3); font-size: .8rem; }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a { color: rgba(255,255,255,0.4); font-size: .8rem; letter-spacing: 1px; transition: color .2s; }
+    .footer-social a:hover { color: var(--red); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav ul, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .philosophy-inner, .coach-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.wide { grid-column: span 1; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5%; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hero-logo { width: 120px; height: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-logo">
+    <img src="image/logo.jpg" alt="Eagle Stars Logo" />
+      <div class="nav-logo-text"><h4>Eagle <span>Stars</span></h4>
+          <h5>Soccer Academy</h5>
+      </div>
+  </div>
+  <ul>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#coach">Coach</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#join">Contact</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Register</a>
+  <div class="nav-hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="image/VID-20260427-WA0014.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <img src="image/logo.jpg" alt="Eagle Stars Soccer Academy" class="hero-logo" />
+    <div class="hero-tag">★ Frisco, Texas ★</div>
+    <h1>Eagle <em>Stars</em><br>Soccer Academy</h1>
+    <p class="hero-sub">Master the <span>Ball</span>. Master the <span>Game</span>.</p>
+    <div class="hero-btns">
+      <a href="#join" class="btn-primary">Join the Academy</a>
+      <a href="#programs" class="btn-outline">View Programs</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span></span></div>
+</section>
+
+<!-- ── STATS BAR ─────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">500<span>+</span></div>
+    <div class="stat-label">Players Trained</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10<span>+</span></div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3<span>–</span>18</div>
+    <div class="stat-label">Age Groups</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num"><span>#</span>1</div>
+    <div class="stat-label">Academy in Frisco</div>
+  </div>
+</div>
+
+<!-- ── PHILOSOPHY ─────────────────────────────────────────────── -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-img">
+      <img src="image/IMG-20260427-WA0011.jpg" alt="Start Small. Dream Big. Become Great." />
+    </div>
+    <div>
+      <div class="section-tag">Our Philosophy</div>
+      <h2 class="section-title">Start Small.<br><em>Dream Big.</em><br>Become Great.</h2>
+      <div class="divider"></div>
+      <p style="color:rgba(255,255,255,0.65);line-height:1.8;margin-bottom:2rem;">
+        At Eagle Stars, we believe every great player starts with a dream. Our proven development system
+        takes young athletes from their first touch to the highest levels of the game.
+      </p>
+      <div class="philosophy-steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <strong>Start Small</strong>
+            <p>Master fundamentals — dribbling, passing, first touch. Build confidence on the ball from day one.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <strong>Dream Big</strong>
+            <p>Develop tactical intelligence, teamwork, and the competitive mindset of a champion.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <strong>Become Great</strong>
+            <p>Reach your full potential — college, academy, or professional. We open doors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COACH ───────────────────────────────────────────────────── -->
+<section class="coach" id="coach">
+  <div class="coach-inner">
+    <div class="coach-img">
+      <img src="image/IMG-20260427-WA0006.jpg" alt="Klaudio Aliaj — Founder & Director of Coaching" />
+    </div>
+    <div>
+      <div class="section-tag">Meet the Founder</div>
+      <h2 class="coach-name">Klaudio <em>Aliaj</em></h2>
+      <div class="coach-title">Founder &amp; Director of Coaching</div>
+      <div class="divider"></div>
+      <p class="coach-bio">
+        With over a decade of professional coaching experience, Klaudio Aliaj built Eagle Stars Soccer Academy
+        on one belief: every child deserves world-class coaching. His player-first approach has shaped hundreds
+        of athletes, helping them master the technical, tactical, and mental sides of the beautiful game.
+      </p>
+      <p class="coach-bio">
+        Klaudio's coaching philosophy is simple — develop the whole player. On and off the field,
+        Eagle Stars athletes learn discipline, leadership, and how to compete at the highest level.
+      </p>
+      <div class="coach-badges">
+        <div class="badge">UEFA Licensed</div>
+        <div class="badge">10+ Years Coaching</div>
+        <div class="badge">500+ Players</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROGRAMS ─────────────────────────────────────────────────── -->
+<section class="programs" id="programs">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Training <em>Programs</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card">
+      <div class="program-icon">⚽</div>
+      <div class="program-age">Ages 3–6</div>
+      <h3>Little Eagles</h3>
+      <p>Introduction to soccer through fun, age-appropriate drills. Build coordination, love for the game, and early technical skills in a safe environment.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">🦅</div>
+      <div class="program-age">Ages 7–12</div>
+      <h3>Rising Stars</h3>
+      <p>Core skill development — dribbling, shooting, passing, positioning. Players compete in local leagues and begin understanding team tactics.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">🏆</div>
+      <div class="program-age">Ages 13–18</div>
+      <h3>Elite Academy</h3>
+      <p>High-performance training for competitive players. Advanced tactics, fitness conditioning, and college/academy placement guidance.</p>
+    </div>
+    <div class="program-card">
+      <div class="program-icon">🎯</div>
+      <div class="program-age">All Ages</div>
+      <h3>Private Coaching</h3>
+      <p>One-on-one sessions with Coach Klaudio. Personalized curriculum focused on your specific weaknesses and goals. Fast-track your development.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ──────────────────────────────────────────────────── -->
+<section class="gallery" id="gallery">
+  <div class="gallery-title-wrap">
+    <div class="section-tag">Gallery</div>
+    <h2 class="section-title">Eagle Stars <em>In Action</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item wide" style="height:320px">
+      <img src="image/IMG-20260427-WA0010.jpg" alt="Eagle Stars players on the field" style="height:100%" />
+    </div>
+    <div class="gallery-item" style="height:320px">
+      <img src="image/IMG-20260427-WA0012.jpg" alt="Eagle Stars Academy poster" style="height:100%" />
+    </div>
+    <div class="gallery-item" style="height:320px">
+      <img src="image/IMG-20260427-WA0011.jpg" alt="Start Small Dream Big" style="height:100%" />
+    </div>
+    <div class="gallery-item wide" style="height:320px">
+      <img src="image/IMG-20260424-WA0000.jpg" alt="Eagle Stars logo" style="height:100%" />
+    </div>
+  </div>
+</section>
+
+<!-- ── JOIN CTA ────────────────────────────────────────────────── -->
+<section class="join" id="join">
+  <div class="join-inner">
+    <div class="section-tag">Take the Next Step</div>
+    <h2>Join the <em>Academy</em></h2>
+    <p>Take your game to the next level. Spots are limited — register today and start your journey with Eagle Stars Soccer Academy.</p>
+    <div class="join-location">
+      📍 11955 Independence Pkwy, Frisco, TX 75035
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem">
+      <a href="mailto:info@eaglestarsacademy.com" class="btn-primary">Register Now</a>
+      <a href="tel:+1" class="btn-outline">Call Us Today</a>
+    </div>
+    <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://instagram.com/eaglestarsacademy" style="color:rgba(255,255,255,0.5);font-size:.82rem;letter-spacing:2px;font-weight:600;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#e8263a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+        📱 @EAGLESTARSACADEMY
+      </a>
+      <a href="https://eaglestarsacademy.com" style="color:rgba(255,255,255,0.5);font-size:.82rem;letter-spacing:2px;font-weight:600;text-transform:uppercase;transition:color .2s" onmouseover="this.style.color='#d4960a'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+        🌐 EAGLESTARSACADEMY.COM
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ───────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="image/logo.jpg" alt="Eagle Stars Soccer Academy" />
+      <p>Master the Ball. Master the Game. Developing champions on and off the field in Frisco, Texas since 2015.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#philosophy">Our Philosophy</a></li>
+        <li><a href="#coach">Meet the Coach</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#join">Register</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="footer-contact">
+        <li>11955 Independence Pkwy</li>
+        <li>Frisco, TX 75035</li>
+        <li style="margin-top:.5rem"><a href="https://eaglestarsacademy.com" style="color:rgba(255,255,255,0.55)">eaglestarsacademy.com</a></li>
+        <li><a href="https://instagram.com/eaglestarsacademy" style="color:rgba(255,255,255,0.55)">@eaglestarsacademy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Eagle Stars Soccer Academy. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="https://instagram.com/eaglestarsacademy">Instagram</a>
+      <a href="https://eaglestarsacademy.com">Website</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
