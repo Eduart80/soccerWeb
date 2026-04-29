@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle Stars Soccer Academy — Master the Ball. Master the Game.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="/CSS/index.css" rel="stylesheet"/>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="image/logo.jpg" alt="Eagle Stars" />
+    <div class="nav-logo-text">EAGLE <span class="red">STARS</span><span class="sub">SOCCER ACADEMY</span></div>
+  </div>
+  <ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/programs.html">Programs</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#philosophy">About</a></li>
+    <li><a href="#join">Contact</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Register</a>
+  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+</nav>
+<br/><br/><br/><br/>
+<!-- SECTION 2: COACH INTRO -->
+<section class="intro" id="intro">
+  <img src="/image/klaudioaliaj.jpg" alt="Klaudio Aliaj"/>
+  <div class="intro-inner">
+    <span class="intro-badge">Skills-Based Soccer Academy</span>
+    <div class="intro-name">
+      KLAUDIO<span class="red">ALIAJ</span>
+    </div>
+    <div class="intro-role">Founder &amp; Director of Coaching</div>
+    <p class="intro-desc">Eagle Stars Soccer Academy develops confident players through ball mastery, 1v1 moves, first touch, scanning, decision-making, and real-game skills.</p>
+    <div class="intro-btns">
+      <a href="#join" class="btn-solid">Start Registration</a>
+      <a href="#programs" class="btn-dark">See Training Focus</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: MASTERY STATEMENT -->
+<section class="mastery" id="mastery">
+  <img src="/image/lulzimnaci.jpg" alt="Lulzim Naci"/>
+  <h2 class="mastery-title">
+    <span>EAGLE STARS</span>
+    <span>SOCCER</span>
+    <span style="flex-basis:100%; height:0;"></span>
+    <span>ACADEMY</span>
+  </h2>
+  <p class="mastery-desc">We are not just another soccer program. We are a skills-only development academy built for kids who want to master the ball, play with confidence, and grow step by step.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="image/logo.jpg" alt="Eagle Stars Soccer Academy" />
+      <p>Master the Ball. Master the Game. Developing champions in Frisco, Texas.</p>
+    </div>
+    <div>
+      <h4>Links</h4>
+      <ul>
+         <li><a href="#philosophy">About</a></li>
+        <li><a href="#coach">Coach</a></li>
+        <li><a href="/programs.html">Programs</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#join">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>11955 Independence Pkwy</li>
+        <li>Frisco, TX 75035</li>
+        <li><a href="https://eaglestarsacademy.com">eaglestarsacademy.com</a></li>
+        <li><a href="https://instagram.com/eaglestarsacademy">@eaglestarsacademy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Eagle Stars Soccer Academy. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  function playVideo() {
+    const video = document.getElementById('heroVideo');
+    const overlay = document.getElementById('playOverlay');
+    video.play();
+    overlay.classList.add('hidden');
+    video.addEventListener('pause', () => overlay.classList.remove('hidden'), { once: false });
+    video.addEventListener('ended', () => overlay.classList.remove('hidden'), { once: false });
+  }
+</script>
+
+</body>
+</html>
