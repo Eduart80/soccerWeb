@@ -8,7 +8,7 @@
       --gray:  rgba(255,255,255,0.65);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--white); overflow-x: hidden; }
     img  { display: block; max-width: 60%; }
     a    { text-decoration: none; }
 
@@ -181,7 +181,7 @@
     .join-links a:hover { color: var(--white); }
 
     /* ── FOOTER ─────────────────────────────────────────*/
-     footer{background:#050505;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
+     footer{background:var(--dark);padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
     .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
     .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
     .footer-brand p{color:rgba(255,255,255,.35);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
@@ -227,7 +227,7 @@
     }
 
     /* ── INTRO (Klaudio section) ──────────────────────── */
-    .intro { background: var(--black); padding: 80px 6% 90px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .intro { background: var(--white); padding: 80px 6% 90px; display: flex; flex-direction: column; align-items: center; text-align: center; }
     .intro-inner { max-width: 580px; display: flex; flex-direction: column; align-items: center; }
     .intro-badge {
       display: inline-block; margin-bottom: 1.8rem;
@@ -271,7 +271,7 @@
 
     /* ── MASTERY STATEMENT ────────────────────────────── */
     .mastery {
-      background: var(--black); padding: 110px 6% 100px;
+      background: var(--white); padding: 110px 6% 100px;
       text-align: center; display: flex; flex-direction: column;
       align-items: center; justify-content: center; min-height: 70vh;
     }
@@ -281,14 +281,11 @@
       letter-spacing: 3px; line-height: 1; margin-bottom: 1.8rem;
       display: flex; flex-wrap: wrap; align-items: center;
       justify-content: center; gap: 0 .25em;
+      color: var(--dark);
     }
-    .mastery-title .play-icon {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: .52em; height: .52em; background: var(--white);
-      border-radius: 50%; vertical-align: middle; flex-shrink: 0;
-    }
+    
     .mastery-title .play-icon svg { width: 42%; height: 42%; fill: var(--black); margin-left: 3px; }
     .mastery-desc {
-      max-width: 560px; color: var(--gray); text-align: justify;
+      max-width: 560px; color: var(--dark); text-align: justify;
       font-size: clamp(.92rem, 2.5vw, 1.05rem); line-height: 1.8;
     }
