@@ -17,7 +17,7 @@
       position: fixed; top: 0; width: 100%; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 6%;
-      background: linear-gradient(to bottom, #dedcdc 40%, rgba(255, 255, 255, 0.05) 100%);
+      background: linear-gradient(to bottom, #f6f6f6 40%, rgba(255, 255, 255, 0.05) 100%);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
@@ -183,7 +183,7 @@
     .join-links a:hover { color: var(--white); }
 
     /* ── FOOTER ───────────────────────────────────────── */
-     footer{background: #ebe9e9ec;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
+     footer{background: #f6f6f6;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
     .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
     .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
     .footer-brand p{color:var(--dark);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
