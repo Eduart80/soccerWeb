@@ -105,10 +105,12 @@
     .philosophy-box p{
       font-size:.78rem;color:var(--dark);line-height:1.65;
     }
+    
     .phi-icons{
       display:grid;grid-template-columns:repeat(3,1fr);
       gap:.4rem;margin-top:1rem;
     }
+
     .phi-icon-item{
       display:flex;align-items:flex-start;gap:.55rem;
       padding:.5rem 0;
