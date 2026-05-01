@@ -6,9 +6,15 @@
   <title>Eagle Stars Soccer Academy — Master the Ball. Master the Game.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="CSS/contact.css" rel="stylesheet"/>
   <link href="CSS/nav.css" rel="stylesheet"/>
   <link href="CSS/footer.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // Replace with your EmailJS Public Key (Account → API Keys)
+    emailjs.init('YOUR_PUBLIC_KEY');
+  </script>
 </head>
 <body>
 
@@ -24,11 +30,46 @@
     <li><a href="programs.html">Programs</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="#join" class="nav-cta">Register</a>
+  <a href="contact.html" class="nav-cta">Register</a>
   <div class="nav-hamburger"><span></span><span></span><span></span></div>
 </nav>
+
+<!-- ─── REGISTRATION FORM ────────────────────────── -->
+<section class="form-section" id="register">
+  <div class="section-tag">Registration + Waiver</div>
+  <h2 class="section-title">Player Registration Form</h2>
+  <p class="section-sub">Complete the form below. When you submit, your email app will open and send the registration details to Eagle Stars Soccer Academy. No online payments are included.</p>
+
+  <form id="registration-form">
+    <div><label>Player First Name</label><input name="Player First Name" required /></div>
+    <div><label>Player Last Name</label><input name="Player Last Name" required /></div>
+    <div><label>Player Age</label><input name="Player Age" type="number" min="5" max="16" required /></div>
+    <div><label>Date of Birth</label><input name="Date of Birth" type="date" /></div>
+    <div><label>Parent/Guardian Name</label><input name="Parent Guardian Name" required /></div>
+    <div><label>Parent Phone</label><input name="Parent Phone" type="tel" required /></div>
+    <div><label>Parent Email</label><input name="Parent Email" type="email" required /></div>
+    <div><label>Player Level</label>
+      <select name="Player Level">
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+        <option>Club/Select Player</option>
+      </select>
+    </div>
+    <div class="full"><label>Medical Notes / Allergies</label><textarea name="Medical Notes" placeholder="Please list any allergies, injuries, medical needs, or anything coaches should know."></textarea></div>
+    <div class="full"><label>Soccer Goals</label><textarea name="Soccer Goals" placeholder="Tell us what your child wants to improve: dribbling, confidence, first touch, 1v1, finishing, etc."></textarea></div>
+    <div class="full waiver">
+      <strong>Waiver &amp; Release</strong><br /><br />
+      I understand that soccer training involves physical activity and possible risk of injury. I confirm that my child is physically able to participate. I release Eagle Stars Soccer Academy, its coaches, staff, and facility partners from liability for injuries or accidents that may occur during training, except in cases of gross negligence. I give permission for emergency medical care if needed and understand that I am responsible for any medical expenses. I also give permission for my child to be photographed or recorded for academy promotional use unless I notify the academy in writing.
+      <label class="check"><input type="checkbox" name="Waiver Accepted" value="Yes" required /> I have read and agree to the waiver and release.</label>
+    </div>
+    <div class="full">
+      <button class="btn-submit" type="submit" id="submit-btn">Submit Registration</button>
+      <p class="submit-note" id="form-status"></p>
+    </div>
+  </form>
+</section>
 
 <!-- ─── FOOTER ───────────────────────────────────── -->
 <footer>
@@ -59,7 +100,7 @@
       <li><span class="ci">📍</span>Frisco, Texas</li>
     </ul>
     <div class="join-bottom">
-      <a href="mailto:info@eaglestarsacademy.com" class="btn-register">REGISTER TODAY</a>
+      <a href="contact.html" class="btn-register">REGISTER TODAY</a>
       <div class="qr-block">
         <div class="qr-placeholder">
           <div id="qr-code-canvas"></div>
@@ -77,6 +118,53 @@
 </footer>
 
 <script>
+  // ── EmailJS form handler ────────────────────────────
+  document.getElementById('registration-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    const f = this;
+    const data = {
+      first_name:    f['Player First Name'].value,
+      last_name:     f['Player Last Name'].value,
+      age:           f['Player Age'].value,
+      dob:           f['Date of Birth'].value,
+      parent_name:   f['Parent Guardian Name'].value,
+      parent_phone:  f['Parent Phone'].value,
+      parent_email:  f['Parent Email'].value,
+      level:         f['Player Level'].value,
+      medical_notes: f['Medical Notes'].value,
+      soccer_goals:  f['Soccer Goals'].value,
+      waiver:        f['Waiver Accepted'].checked ? 'Yes' : 'No'
+    };
+
+    // ── Google Sheets (Apps Script) ──────────────────
+    const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL'; // replace after deploying Apps Script
+    const sheetsPromise = fetch(SHEETS_URL, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    }).catch(function() { /* non-blocking — fail silently */ });
+
+    // ── EmailJS notification ─────────────────────────
+    // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID from EmailJS dashboard
+    const emailPromise = emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', f);
+
+    Promise.allSettled([sheetsPromise, emailPromise]).then(function() {
+      status.style.color = '#16a34a';
+      status.textContent = 'Registration sent successfully! We will be in touch soon.';
+      btn.textContent = 'Sent!';
+      document.getElementById('registration-form').reset();
+    }).catch(function() {
+      status.style.color = '#cc1e2e';
+      status.textContent = 'Something went wrong. Please email us directly at info@eaglestarsacademy.com';
+      btn.disabled = false;
+      btn.textContent = 'Submit Registration';
+    });
+  });
+
   new QRCode(document.getElementById('qr-code-canvas'), {
     text: 'https://www.eaglestarsacademy.com',
     width: 100,

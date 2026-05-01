@@ -16,7 +16,7 @@ a    { text-decoration: none; }
 /* -- FOOTER ----------------------------------------- */
 footer { background: #f6f6f6; padding: 36px 6% 22px; border-top: 1px solid rgba(255,255,255,.05); }
 .footer-top { max-width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 3.5rem; margin-bottom: 2rem; }
-.footer-brand img { height: 52px; object-fit: contain; margin-bottom: .7rem; margin-left: 15px; }
+.footer-brand img { height: 52px; object-fit: contain; margin-bottom: .7rem; margin-left: 15px; border-radius: 10px; }
 .footer-brand p { color: var(--dark); font-size: .78rem; line-height: 1.7; max-width: 280px; margin-left: 15px; }
 footer h4 { font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: 3px; color: var(--red); margin-bottom: .8rem; }
 footer ul { display: flex; flex-direction: column; gap: .45rem; }
@@ -34,7 +34,7 @@ footer ul a:hover { color: var(--white); }
 .contact-list li a { color: var(--dark); transition: color .2s; }
 .contact-list li a:hover { color: var(--white); }
 .join-bottom { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-.btn-register { background: var(--red); color: var(--white); padding: 10px 22px; border-radius: 15px; font-size: .75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; display: inline-block; transition: all .2s; }
+.btn-register { background: var(--red); color: var(--white); padding: 10px 22px; border-radius: 15px; font-size: .75rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; display: inline-block; transition: all .2s; box-shadow: 0 6px 18px rgba(0, 0, 0, .28); }
 .btn-register:hover { background: var(--red); color: var(--white); }
 .qr-block .qr-label { font-size: .58rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.4); text-align: center; }
 .qr-placeholder { width: 108px; height: 108px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 4px; box-sizing: border-box; }

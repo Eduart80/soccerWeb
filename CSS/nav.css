@@ -33,6 +33,7 @@ nav ul a:hover { color: var(--white); }
   padding: 9px 22px; font-size: .82rem; font-weight: 700;
   letter-spacing: 1px; text-transform: uppercase; transition: opacity .2s;
   border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
 }
 .nav-cta:hover { opacity: .85; }
 .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
