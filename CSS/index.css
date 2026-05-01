@@ -193,6 +193,7 @@
     footer ul a:hover{color:var(--white)}
     .footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
     .footer-bottom p{color:rgba(25, 25, 25, 0.8);font-size:.74rem}
+   
     .join-block h2{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--dark);margin-bottom:.25rem}
     .join-block h2 em{color:var(--red);font-style:normal}
     .join-tagline{color:var(--dark);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.2rem}
@@ -203,13 +204,13 @@
     .contact-list li a:hover{color:var(--white)}
     .join-bottom{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
     .btn-register{background:var(--red);color:var(--white);padding:10px 22px;border-radius: 15px; font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:inline-block;transition:all .2s}
-    .btn-register:hover{background:var(--red);color:var(--white)}
+    .btn-register:hover{background:var(--red);color:var(--white)} 
     /* {display:flex;flex-direction:column;align-items:center;gap:.3rem} */
-    .qr-block .qr-label{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+    /* .qr-block .qr-label{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
     .qr-placeholder{width:108px;height:108px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;box-sizing:border-box;}
     .qr-placeholder canvas,.qr-placeholder img{width:100px!important;height:100px!important;display:block}
     .spaces-limited{font-size:.62rem;font-weight:800;letter-spacing:2px;border-radius: 15px; text-transform:uppercase;color:var(--red);border:1px solid var(--red);padding:3px 8px;animation:blink 2s infinite;}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}} */
 
     /* ── RESPONSIVE ───────────────────────────────────── */
     @media (max-width: 860px) {

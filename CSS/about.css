@@ -1,0 +1,113 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #000000;
+      --dark:  #0d0d0d;
+      --red:   #cc1e2e;
+      --gold:  #f0b429;
+      --white: #ffffff;
+      --gray:  rgba(255,255,255,0.65);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--white); overflow-x: hidden; }
+    img  { display: block; max-width: 100%; }
+    a    { text-decoration: none; }
+
+    /* -- NAV -------------------------------------------- */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 6%;
+      background: linear-gradient(to bottom, #f6f6f6 40%, rgba(255, 255, 255, 0.05) 100%);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
+    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 2px; line-height: 1.1;color: var(--dark); }
+    .nav-logo-text .red { color: var(--red); }
+    .nav-logo-text .sub { display: block; font-size: .75rem; letter-spacing: 3px; color: rgb(65, 64, 64); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a { color: var(--dark); font-size: .85rem; font-weight: 500; letter-spacing: .5px; transition: color .2s; }
+    nav ul a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--red); color: var(--white);
+      padding: 9px 22px; font-size: .82rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase; transition: opacity .2s;
+      border-radius: 15px;
+    }
+    .nav-cta:hover { opacity: .85; }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--white); }
+
+    /* -- HERO ------------------------------------------- */
+    .hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+    }
+
+    /* -- SECTIONS --------------------------------------- */
+    section { padding: 90px 6%; }
+
+    /* -- FOOTER ----------------------------------------- */
+    footer{background: #f6f6f6;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
+    .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
+    .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
+    .footer-brand p{color:var(--dark);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
+    footer h4{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:3px;color:var(--red);margin-bottom:.8rem}
+    footer ul{display:flex;flex-direction:column;gap:.45rem}
+    footer ul a,footer ul li{color:var(--dark);font-size:.78rem}
+    footer ul a:hover{color:var(--white)}
+    .footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+    .footer-bottom p{color:rgba(25, 25, 25, 0.8);font-size:.74rem}
+    .join-block h2{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--dark);margin-bottom:.25rem}
+    .join-block h2 em{color:var(--red);font-style:normal}
+    .join-tagline{color:var(--dark);font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.2rem}
+    .contact-list{display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.2rem}
+    .contact-list li{display:flex;align-items:center;gap:.6rem;font-size:.76rem;color:var(--red)}
+    .contact-list li .ci{font-size:.85rem;flex-shrink:0}
+    .contact-list li a{color:var(--dark);transition:color .2s}
+    .contact-list li a:hover{color:var(--white)}
+    .join-bottom{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;}
+    .btn-register{background:var(--red);color:var(--white);padding:10px 22px;border-radius: 15px; font-size:.75rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;display:inline-block;transition:all .2s}
+    .btn-register:hover{background:var(--red);color:var(--white)}
+    .qr-block .qr-label{font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);text-align:center}
+    .qr-placeholder{width:108px;height:108px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:4px;box-sizing:border-box;}
+    .qr-placeholder canvas,.qr-placeholder img{width:100px!important;height:100px!important;display:block}
+    .spaces-limited{font-size:.62rem;font-weight:800;letter-spacing:2px;border-radius: 15px; text-transform:uppercase;color:var(--red);border:1px solid var(--red);padding:3px 8px;animation:blink 2s infinite;}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}
+
+    /* -- RESPONSIVE ------------------------------------- */
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+      .nav-hamburger { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* -- INTRO ------------------------ */
+    .intro {
+      position: relative;
+      background: var(--white);
+      padding: 80px 6% 90px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .intro::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('../image/uefa.png') 30% 70% / contain no-repeat;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .intro-inner { max-width: 580px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+    .intro-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 8vw, 4rem);
+      letter-spacing: 4px; line-height: .9;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+    }
+    .intro-name .red { color: var(--red); }
+    .intro-role {
+      font-size: .82rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--dark); margin-bottom: 1.4rem;
+    }
+    .intro-desc {
+      color: var(--dark); font-size: .92rem; line-height: 1.8;
+      text-align: justify; margin-bottom: 2.2rem;
+    }

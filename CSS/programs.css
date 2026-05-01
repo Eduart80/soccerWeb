@@ -20,16 +20,15 @@
       position: fixed; top: 0; width: 100%; z-index: 200;
       display: flex; align-items: center; justify-content: space-between;
       padding: 16px 6%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, #f6f6f6 40%, rgba(255, 255, 255, 0.05) 100%);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
-    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 2px; line-height: 1.1; }
+    .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 2px; line-height: 1.1;color: var(--dark); }
     .nav-logo-text .red { color: var(--red); }
-    .nav-logo-text .sub { display: block; font-size: .75rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); }
+    .nav-logo-text .sub { display: block; font-size: .75rem; letter-spacing: 3px; color: rgb(65, 64, 64); }
     nav ul { list-style: none; display: flex; gap: 2rem; }
-    nav ul a { color: rgba(255,255,255,0.7); font-size: .85rem; font-weight: 500; letter-spacing: .5px; transition: color .2s; }
+    nav ul a { color: var(--dark); font-size: .85rem; font-weight: 500; letter-spacing: .5px; transition: color .2s; }
     nav ul a:hover { color: var(--white); }
     .nav-cta {
       background: var(--red); color: var(--white);
@@ -173,8 +172,7 @@
     ═══════════════════════════════════════════════════ */
     .main-grid{
       display:grid;
-      max-width: 80%;
-      margin: auto;
+      max-width: 100%;
       grid-template-columns:60% 340px;
       background:var(--black);
       border-top:1px solid rgba(255,255,255,.05);
@@ -198,6 +196,13 @@
       min-height:160px;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
+    .pillar-row:nth-child(2){ background: var(--white); }
+    .pillar-row:nth-child(2) .pillar-num-cell { background: rgba(0,0,0,.04); border-right-color: rgba(0,0,0,.08); }
+    .pillar-row:nth-child(2) .pillar-num-cell span { color: var(--black); }
+    .pillar-row:nth-child(2) .pillar-icon-cell { background: rgba(0,0,0,.03); border-right-color: rgba(0,0,0,.08); }
+    .pillar-row:nth-child(2) .pillar-content-cell h3 { color: var(--black); }
+    .pillar-row:nth-child(2) .pillar-content-cell ul li { color: var(--dark); }
+    .pillar-row:nth-child(2) .pillar-content-cell ul li::before { color: rgba(0,0,0,.35); }
     .pillar-row:last-child{border-bottom:none}
 
     .pillar-num-cell{
@@ -247,10 +252,15 @@
       content:'•';position:absolute;left:0;color:rgba(255,255,255,.35);
     }
     .pillar-goal{font-size:.73rem;color:var(--red);font-weight:700}
-    .pillar-goal strong{font-weight:800}
+    .pillar-goal strong{font-weight:800; color: var(--dark);}
 
-    .pillar-photo-cell{overflow:hidden}
+    .pillar-photo-cell{overflow:hidden; position:relative;}
     .pillar-photo-cell img{width:100%;height:100%;object-fit:cover;display:block}
+    .pillar-row:nth-child(2) .pillar-photo-cell::before{
+      content:''; position:absolute; inset:0; z-index:1;
+      background: linear-gradient(to right, #ffffff 0%, transparent 45%);
+      pointer-events:none;
+    }
 
     /* ── RIGHT: Training Session Structure ── */
     .training-col{
@@ -499,16 +509,16 @@
     /* ═══════════════════════════════════════════════════
        FOOTER
     ═══════════════════════════════════════════════════ */
-    footer{background:#050505;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
+    footer{background: #f6f6f6;padding:36px 6% 22px;border-top:1px solid rgba(255,255,255,.05)}
     .footer-top{max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 2fr;gap:3.5rem;margin-bottom:2rem}
     .footer-brand img{height:52px;object-fit:contain;margin-bottom:.7rem; margin-left: 15px;}
-    .footer-brand p{color:rgba(255,255,255,.35);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
+    .footer-brand p{color:var(--dark);font-size:.78rem;line-height:1.7;max-width:280px; margin-left: 15px;}
     footer h4{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:3px;color:var(--red);margin-bottom:.8rem}
     footer ul{display:flex;flex-direction:column;gap:.45rem}
-    footer ul a,footer ul li{color:rgba(255,255,255,.4);font-size:.78rem}
+    footer ul a,footer ul li{color:var(--dark);font-size:.78rem}
     footer ul a:hover{color:var(--white)}
     .footer-bottom{max-width:1100px;margin:0 auto;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
-    .footer-bottom p{color:rgba(255,255,255,.2);font-size:.74rem}
+    .footer-bottom p{color:rgba(25, 25, 25, 0.8);font-size:.74rem}
 
     /* ═══════════════════════════════════════════════════
        RESPONSIVE
