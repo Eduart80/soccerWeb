@@ -8,8 +8,8 @@
   --white: #ffffff;
   --gray:  rgba(255,255,255,0.65);
 }
-html { scroll-behavior: smooth; }
-body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--white); overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100vw; }
+body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--white); overflow-x: hidden; max-width: 100vw; }
 img  { display: block; max-width: 100%; }
 a    { text-decoration: none; }
 

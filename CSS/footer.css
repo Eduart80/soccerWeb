@@ -20,6 +20,7 @@ footer { background: #f6f6f6; padding: 36px 6% 22px; border-top: 1px solid rgba(
 .footer-brand p { color: var(--dark); font-size: .78rem; line-height: 1.7; max-width: 280px; margin-left: 15px; }
 footer h4 { font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: 3px; color: var(--red); margin-bottom: .8rem; }
 footer ul { display: flex; flex-direction: column; gap: .45rem; }
+.footer-top > .join-block { padding-left: 15px; }
 footer ul a, footer ul li { color: var(--dark); font-size: .78rem; }
 footer ul a:hover { color: var(--white); }
 .footer-bottom { max-width: 1100px; margin: 0 auto; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .6rem; }

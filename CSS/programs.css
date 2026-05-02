@@ -10,7 +10,8 @@
   --white:#ffffff;
   --gray:rgba(255,255,255,.65);
 }
-body{font-family:'Inter',sans-serif;background:#ffffff;color:var(--white);overflow-x:hidden}
+html{overflow-x:hidden;max-width:100vw}
+body{font-family:'Inter',sans-serif;background:#ffffff;color:var(--white);overflow-x:hidden;max-width:100vw}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
@@ -18,7 +19,7 @@ ul{list-style:none}
 .pdp-page{padding-top:72px}
 
 /* ---------------------------------------------------
-   SECTION 1 — HERO (3-col)
+   SECTION 1 ï¿½ HERO (3-col)
 --------------------------------------------------- */
 .hero-wrap{
   display:grid;
@@ -27,12 +28,12 @@ ul{list-style:none}
   background:var(--white);
 }
 
-/* LEFT — player photo */
+/* LEFT ï¿½ player photo */
 .hero-left{display:flex;flex-direction:column;overflow:hidden;position:relative;}
 .hero-left-photo{flex:1;overflow:hidden}
 .hero-left-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
 
-/* CENTER — title + philosophy */
+/* CENTER ï¿½ title + philosophy */
 .hero-center{
   padding:28px 30px 24px;
   display:flex;flex-direction:column;justify-content:flex-start;
@@ -67,9 +68,9 @@ ul{list-style:none}
 .phi-icon-item strong{display:block;font-size:.66rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dark);margin-bottom:.15rem}
 .phi-icon-item span{font-size:.67rem;color:var(--dark);line-height:1.4}
 
-/* RIGHT — why eagle stars */
+/* RIGHT ï¿½ why eagle stars */
 .hero-right{padding:20px 18px;background:var(--dark);display:flex;flex-direction:column;}
-.hero-right-photo{width:100%;aspect-ratio:4/3;overflow:hidden;margin-bottom:1.2rem;flex-shrink:0;}
+.hero-right-photo{width:100%;overflow:hidden;margin-bottom:1.2rem;flex-shrink:0;}
 .hero-right-photo img{width:100%;height:100%;object-fit:cover;object-position:top}
 .why-title{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:3px;color:var(--white);margin-bottom:1rem;}
 .why-title em{color:var(--gold);font-style:normal}
@@ -89,7 +90,7 @@ ul{list-style:none}
 .statement-bar p{font-family:'Bebas Neue',sans-serif;font-size:clamp(.9rem,2.5vw,1.3rem);letter-spacing:4px;color:var(--white);font-style:italic;}
 
 /* ---------------------------------------------------
-   SECTION 2 — PILLARS + TRAINING (2-col)
+   SECTION 2 ï¿½ PILLARS + TRAINING (2-col)
 --------------------------------------------------- */
 .main-grid{display:grid;max-width:100%;grid-template-columns:60% 340px;background:var(--black);border-top:1px solid rgba(255,255,255,.05);}
 
@@ -97,35 +98,28 @@ ul{list-style:none}
 .pillars-col{border-right:1px solid rgba(255,255,255,.07);}
 .pillars-col-hdr{background:var(--red);padding:10px 20px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:5px;color:var(--white);text-align:center;}
 
-.pillar-row{display:grid;grid-template-columns:52px 52px 1fr 140px;min-height:160px;border-bottom:1px solid rgba(255,255,255,.06);}
-.pillar-row:nth-child(2){ background:var(--white); }
-.pillar-row:nth-child(2) .pillar-num-cell { background:rgba(0,0,0,.04); border-right-color:rgba(0,0,0,.08); }
-.pillar-row:nth-child(2) .pillar-num-cell span { color:var(--black); }
-.pillar-row:nth-child(2) .pillar-icon-cell { background:rgba(0,0,0,.03); border-right-color:rgba(0,0,0,.08); }
-.pillar-row:nth-child(2) .pillar-content-cell h3 { color:var(--black); }
-.pillar-row:nth-child(2) .pillar-content-cell ul li { color:var(--dark); }
-.pillar-row:nth-child(2) .pillar-content-cell ul li::before { color:rgba(0,0,0,.35); }
+.pillar-row{display:grid;grid-template-columns:52px 52px 1fr 140px;min-height:160px;border-bottom:1px solid rgba(0,0,0,.08);background:var(--white);}
 .pillar-row:last-child{border-bottom:none}
 
-.pillar-num-cell{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);border-right:1px solid rgba(255,255,255,.06);}
-.pillar-num-cell span{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--white);}
+.pillar-num-cell{display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.04);border-right:1px solid rgba(0,0,0,.08);}
+.pillar-num-cell span{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--black);}
 
-.pillar-icon-cell{display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);}
+.pillar-icon-cell{display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(0,0,0,.08);background:rgba(0,0,0,.1);}
 .pillar-icon-cell .ico{font-size:1.6rem;}
-.pillar-icon-cell .ico-1v1{width:36px;height:36px;border:2px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:0;color:var(--white);}
-.pillar-icon-cell .ico-chk{width:36px;height:36px;border:2px solid rgba(255,255,255,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.pillar-icon-cell .ico-1v1{width:36px;height:36px;border:2px solid rgba(0,0,0,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:0;color:var(--black);}
+.pillar-icon-cell .ico-chk{width:36px;height:36px;border:2px solid rgba(0,0,0,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
 
 .pillar-content-cell{padding:14px 14px 14px 16px;display:flex;flex-direction:column;justify-content:center;}
-.pillar-content-cell h3{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--white);margin-bottom:.45rem;}
+.pillar-content-cell h3{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:2px;color:var(--black);margin-bottom:.45rem;}
 .pillar-content-cell ul{display:flex;flex-direction:column;gap:.16rem;margin-bottom:.5rem}
-.pillar-content-cell ul li{font-size:.74rem;color:var(--gray);line-height:1.5;padding-left:.8rem;position:relative;}
-.pillar-content-cell ul li::before{content:'•';position:absolute;left:0;color:rgba(255,255,255,.35);}
+.pillar-content-cell ul li{font-size:.74rem;color:var(--dark);line-height:1.5;padding-left:.8rem;position:relative;}
+.pillar-content-cell ul li::before{position:absolute;left:0;color:rgba(0,0,0,.35);}
 .pillar-goal{font-size:.73rem;color:var(--red);font-weight:700}
 .pillar-goal strong{font-weight:800;color:var(--dark);}
 
 .pillar-photo-cell{overflow:hidden;position:relative;}
 .pillar-photo-cell img{width:100%;height:100%;object-fit:cover;display:block}
-.pillar-row:nth-child(2) .pillar-photo-cell::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#ffffff 0%,transparent 45%);pointer-events:none;}
+.pillar-photo-cell::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to right,#ffffff 0%,transparent 45%);pointer-events:none;}
 
 /* RIGHT: Training Session Structure */
 .training-col{display:flex;flex-direction:column;}
@@ -144,20 +138,20 @@ ul{list-style:none}
 .ts-content-cell h4{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:2px;color:var(--white);margin-bottom:.35rem;}
 .ts-content-cell ul{display:flex;flex-direction:column;gap:.12rem}
 .ts-content-cell ul li{font-size:.71rem;color:var(--gray);line-height:1.5;padding-left:.7rem;position:relative;}
-.ts-content-cell ul li::before{content:'•';position:absolute;left:0;color:rgba(255,255,255,.3)}
+.ts-content-cell ul li::before{content:'ï¿½';position:absolute;left:0;color:rgba(255,255,255,.3)}
 
 .ts-photo-cell{overflow:hidden;border-left:1px solid rgba(255,255,255,.06)}
 .ts-photo-cell img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ---------------------------------------------------
-   SECTION 3 — BOTTOM 4-COL BAND
+   SECTION 3 ï¿½ BOTTOM 4-COL BAND
 --------------------------------------------------- */
 .band{display:grid;grid-template-columns:repeat(4,1fr);background:#0d0d0d;border-top:3px solid var(--red);}
 .band-col{padding:20px 18px;border-right:1px solid rgba(255,255,255,.06);}
 .band-col:last-child{border-right:none}
 .band-col-title{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:3px;color:var(--red);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid rgba(204,30,46,.3);}
 
-/* Col 1 — Program Levels */
+/* Col 1 ï¿½ Program Levels */
 .level-intro{font-size:.72rem;color:var(--gray);line-height:1.5;margin-bottom:.9rem}
 .level-item{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.8rem}
 .level-badge{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;}
@@ -167,7 +161,7 @@ ul{list-style:none}
 .level-item h5{font-size:.72rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:.12rem}
 .level-item p{font-size:.7rem;color:var(--gray);line-height:1.4}
 
-/* Col 2 — 8-Week Cycle */
+/* Col 2 ï¿½ 8-Week Cycle */
 .week-grid{display:grid;grid-template-columns:1fr 80px;gap:0;height:calc(100% - 36px)}
 .week-list{display:flex;flex-direction:column;gap:.7rem}
 .week-badge{display:inline-block;background:var(--red);padding:2px 7px;font-size:.62rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--white);margin-bottom:.3rem;}
@@ -175,13 +169,13 @@ ul{list-style:none}
 .week-photo{overflow:hidden;margin-left:10px}
 .week-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
 
-/* Col 3 — Player Outcomes */
+/* Col 3 ï¿½ Player Outcomes */
 .outcome-list{display:flex;flex-direction:column;gap:.55rem}
 .outcome-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.74rem;color:var(--gray);line-height:1.5;}
 .outcome-list li .oi{font-size:.85rem;flex-shrink:0;margin-top:1px}
 .outcome-cta{margin-top:1rem;font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:1.5px;color:var(--red);line-height:1.5;border-top:1px solid rgba(204,30,46,.25);padding-top:.8rem;}
 
-/* Col 4 — Evaluation */
+/* Col 4 ï¿½ Evaluation */
 .eval-intro{font-size:.72rem;color:var(--gray);line-height:1.5;margin-bottom:.8rem}
 .eval-item{display:flex;align-items:flex-start;gap:.6rem;margin-bottom:.7rem}
 .eval-item .ei{font-size:.95rem;flex-shrink:0;margin-top:1px}
@@ -212,12 +206,17 @@ ul{list-style:none}
   .week-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .hero-wrap{grid-template-columns:1fr}
+  .hero-wrap{grid-template-columns:1fr;width:100%}
   .hero-right{display:none}
   .band{grid-template-columns:1fr}
   .band-col{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
-  .pillar-photo-cell{display:none}
-  .pillar-row{grid-template-columns:40px 40px 1fr}
+  .pillar-row{grid-template-columns:40px 40px 1fr;width:100%;position:relative}
+  .pillar-photo-cell{display:block;position:absolute;inset:0;z-index:0}
+  .pillar-photo-cell img{width:100%;height:100%;object-fit:cover;object-position:center top}
+  .pillar-photo-cell::before{background:linear-gradient(to right,#ffffff 55%,transparent 100%)}
+  .pillar-num-cell,.pillar-icon-cell,.pillar-content-cell{position:relative;z-index:1}
   .ts-photo-cell{display:none}
-  .ts-row{grid-template-columns:54px 1fr}
+  .ts-row{grid-template-columns:54px 1fr;width:100%}
+  .main-grid{width:100%}
+  .statement-bar p{font-size:.85rem;letter-spacing:2px}
 }
