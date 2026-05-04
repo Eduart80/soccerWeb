@@ -149,7 +149,7 @@ ul{list-style:none}
 .band{display:grid;grid-template-columns:repeat(4,1fr);background:var(--white);border-top:3px solid var(--red);}
 .band-col{padding:20px 18px;border-right:1px solid rgba(0,0,0,.08);}
 .band-col:last-child{border-right:none}
-.band-col-title{font-family:'Bebas Neue',sans-serif;font-size:.88rem;letter-spacing:3px;color:var(--red);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid rgba(204,30,46,.3);}
+.band-col-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--red);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid rgba(204,30,46,.3);}
 
 /* Col 1 � Program Levels */
 .level-intro{font-size:.72rem;color:var(--dark);line-height:1.5;margin-bottom:.9rem}
@@ -173,7 +173,7 @@ ul{list-style:none}
 .outcome-list{display:flex;flex-direction:column;gap:.55rem}
 .outcome-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.74rem;color:var(--dark);line-height:1.5;}
 .outcome-list li .oi{font-size:.85rem;flex-shrink:0;margin-top:1px}
-.outcome-cta{margin-top:1rem;font-family:'Bebas Neue',sans-serif;font-size:.82rem;letter-spacing:1.5px;color:var(--red);line-height:1.5;border-top:1px solid rgba(204,30,46,.25);padding-top:.8rem;}
+.outcome-cta{margin-top:1rem;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:1.5px;color:var(--red);line-height:1.5;border-top:1px solid rgba(204,30,46,.25);padding-top:.8rem;}
 
 /* Col 4 � Evaluation */
 .eval-intro{font-size:.72rem;color:var(--dark);line-height:1.5;margin-bottom:.8rem}
