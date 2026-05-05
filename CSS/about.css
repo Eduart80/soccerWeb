@@ -105,8 +105,21 @@
     /* -- INTRO ------------------------ */
     .intro {
       position: relative;
-      background: var(--white);
+      background: linear-gradient(to bottom, transparent 0%, #ffffff 140px);
       padding: 80px 6% 90px; display: flex; flex-direction: column; align-items: center; text-align: center;
+      margin-top: -120px;
+      border-radius: 32px 32px 0 0;
+      box-shadow: none;
+      z-index: 2;
+    }
+    @media (max-width: 860px) {
+      .intro {
+        margin-top: -40px;
+        border-radius: 0;
+        background: linear-gradient(to bottom, transparent 0%, #ffffff 60px);
+        box-shadow: none;
+        /* padding-top: 40px; */
+      }
     }
     .intro::before {
       content: '';
@@ -114,6 +127,11 @@
       background: url('../image/uefa.png') 30% 70% / contain no-repeat;
       opacity: 0.1;
       pointer-events: none;
+    }
+    @media (max-width: 860px) {
+      .intro::before {
+        background: url('../image/uefa_small2.png') 10% / auto no-repeat;
+      }
     }
     .intro-inner { max-width: 580px; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
     .intro-name {
