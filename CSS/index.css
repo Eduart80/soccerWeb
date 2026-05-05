@@ -274,6 +274,69 @@
     }
     .btn-dark:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
 
+    /* ── TEAM PIC SPLIT ────────────────────────────────── */
+    .mastery-split {
+      background: var(--white);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4rem;
+      text-align: left;
+      padding: 80px 6%;
+    }
+    .mastery-split-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .mastery-split-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: 2px;
+    }
+    .team_pic {
+      flex: 0 0 42%;
+      max-width: 42%;
+      position: relative;
+    }
+    .team_pic img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 10px 10px 0 var(--red), 20px 20px 0 var(--gold);
+      transition: box-shadow .3s;
+    }
+    .team_pic img:hover {
+      box-shadow: 14px 14px 0 var(--red), 28px 28px 0 var(--gold);
+    }
+    @media (max-width: 860px) {
+      .mastery-split {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 2rem;
+        padding: 60px 6% !important;
+      }
+      .mastery-split-text {
+        align-items: center;
+        text-align: center;
+      }
+      .mastery-split-text h2.mastery-title {
+        justify-content: center !important;
+      }
+      .team_pic {
+        flex: none;
+        max-width: 100%;
+        width: 100%;
+      }
+      .team_pic img {
+        box-shadow: 6px 6px 0 var(--red), 12px 12px 0 var(--gold);
+      }
+    }
+
     /* ── MASTERY STATEMENT ────────────────────────────── */
     .mastery {
       background: var(--white); padding: 1px 5% 1px;
@@ -283,6 +346,7 @@
     .mastery-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.4rem, 8vw, 4rem);
+      font-weight: 400;
       letter-spacing: 3px; line-height: 1; margin-bottom: 1.8rem;
       display: flex; flex-wrap: wrap; align-items: center;
       justify-content: center; gap: 0 .25em;
