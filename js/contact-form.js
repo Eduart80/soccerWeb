@@ -1,11 +1,12 @@
-const EMAILJS_SERVICE          = 'service_qmfez7s';
+const EMAILJS_SERVICE          = 'service_kvekqai';
 const EMAILJS_TEMPLATE_WELCOME = 'template_rxcawui';
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby7Zc0tXFk_wbnUI9wp2ZOBkmBAyiu1fUgN6_gFl_p6e13JDmiGb3BQwk8zzbPG15IGuw/exec';
+const SHEETS_URL = 'hhttps://script.google.com/macros/s/AKfycbyQjVvBQaKi8K0JQUdLWcB4GzixkUR4JDJ3WOvFC9j_pAyfjg0dDoP7488MGQxplNX3/exec';
 
 function saveToSheets(payload) {
   if (!SHEETS_URL || SHEETS_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
   fetch(SHEETS_URL, {
     method: 'POST',
+    mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload)
   }).catch(function() {});
