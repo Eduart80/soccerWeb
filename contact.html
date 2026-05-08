@@ -13,7 +13,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     // Replace with your EmailJS Public Key (Account → API Keys)
-    emailjs.init('YOUR_PUBLIC_KEY');
+    emailjs.init('wX-w3bL-llOxqoU7g');
   </script>
 </head>
 <body>
@@ -26,7 +26,7 @@
   </div>
   <ul>
     <li><a href="index.html">Home</a></li>
-    <li><a href="coach.html">Coach</a></li>
+    <li><a href="coach.html">Coaches</a></li>
     <li><a href="programs.html">Programs</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="about.html">About</a></li>
@@ -76,12 +76,14 @@
   <div class="footer-top">
     <div class="footer-brand">
       <img src="image/logo.jpg" alt="Eagle Stars Soccer Academy" />
-      <p>Master the Ball. Master the Game. Developing champions in Frisco, Texas 75035.</p>
+      <p>Master the Ball. Master the Game.</p>
+      <p>Developing champions in</p>
+      <p>Frisco, Texas 75035.</p>
     </div>
     <div class="join-block">
       <h4>Navigation</h4>
       <ul>
-       <li><a href="coach.html">Coach</a></li>
+       <li><a href="coach.html">Coaches</a></li>
       <li><a href="programs.html">Programs</a></li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="about.html">About</a></li>
@@ -117,53 +119,6 @@
 </footer>
 
 <script>
-  // ── EmailJS form handler ────────────────────────────
-  document.getElementById('registration-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('submit-btn');
-    const status = document.getElementById('form-status');
-    btn.disabled = true;
-    btn.textContent = 'Sending...';
-
-    const f = this;
-    const data = {
-      first_name:    f['Player First Name'].value,
-      last_name:     f['Player Last Name'].value,
-      age:           f['Player Age'].value,
-      dob:           f['Date of Birth'].value,
-      parent_name:   f['Parent Guardian Name'].value,
-      parent_phone:  f['Parent Phone'].value,
-      parent_email:  f['Parent Email'].value,
-      level:         f['Player Level'].value,
-      medical_notes: f['Medical Notes'].value,
-      soccer_goals:  f['Soccer Goals'].value,
-      waiver:        f['Waiver Accepted'].checked ? 'Yes' : 'No'
-    };
-
-    // ── Google Sheets (Apps Script) ──────────────────
-    const SHEETS_URL = 'YOUR_APPS_SCRIPT_URL'; // replace after deploying Apps Script
-    const sheetsPromise = fetch(SHEETS_URL, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    }).catch(function() { /* non-blocking — fail silently */ });
-
-    // ── EmailJS notification ─────────────────────────
-    // Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID from EmailJS dashboard
-    const emailPromise = emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', f);
-
-    Promise.allSettled([sheetsPromise, emailPromise]).then(function() {
-      status.style.color = '#16a34a';
-      status.textContent = 'Registration sent successfully! We will be in touch soon.';
-      btn.textContent = 'Sent!';
-      document.getElementById('registration-form').reset();
-    }).catch(function() {
-      status.style.color = '#cc1e2e';
-      status.textContent = 'Something went wrong. Please email us directly at info@eaglestarsacademy.com';
-      btn.disabled = false;
-      btn.textContent = 'Submit Registration';
-    });
-  });
-
   new QRCode(document.getElementById('qr-code-canvas'), {
     text: 'https://www.eaglestarsacademy.com',
     width: 100,
@@ -173,6 +128,7 @@
     correctLevel: QRCode.CorrectLevel.H
   });
 </script>
+<script src="js/contact-form.js"></script>
 <script src="js/nav.js"></script>
 
 </body>
