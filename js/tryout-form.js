@@ -1,6 +1,6 @@
 const EMAILJS_SERVICE          = 'service_kvekqai';
 const EMAILJS_TEMPLATE_WELCOME = 'template_rxcawui';
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyQjVvBQaKi8K0JQUdLWcB4GzixkUR4JDJ3WOvFC9j_pAyfjg0dDoP7488MGQxplNX3/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyZ6OpoP4zFFmXZDxvjviS9WrMxaHJ9TIDLFI8dpwtgNhq30k8IRFM5uY3dYgVtzkhaWg/exec';
 
 function saveToSheets(payload) {
   if (!SHEETS_URL || SHEETS_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
@@ -29,7 +29,8 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     parent_phone:   f['Parent Phone'].value,
     parent_email:   f['Parent Email'].value,
     level:          f['Player Level'].value,
-    preferred_days: f['Preferred Days'].value,
+    preferred_days: Array.from(f.querySelectorAll('input[name="Preferred Training Days"]:checked')).map(function(cb){ return cb.value; }).join(', ') || 'Not specified',
+    preferred_time: f.querySelector('input[name="Preferred Time"]:checked') ? f.querySelector('input[name="Preferred Time"]:checked').value : 'Not specified',
     referral:       f['How Did You Hear'].value,
     medical_notes:  f['Medical Notes'].value,
     goals:          f['Goals'].value,
@@ -46,6 +47,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     player_level:   data.level,
     parent_phone:   data.parent_phone,
     preferred_days: data.preferred_days,
+    preferred_time: data.preferred_time,
     referral:       data.referral,
     goals:          data.goals,
     medical_notes:  data.medical_notes,
@@ -63,6 +65,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     parent_phone:   data.parent_phone,
     parent_email:   data.parent_email,
     preferred_days: data.preferred_days,
+    preferred_time: data.preferred_time,
     referral:       data.referral,
     medical_notes:  data.medical_notes,
     goals:          data.goals,

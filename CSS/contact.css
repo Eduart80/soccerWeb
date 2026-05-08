@@ -96,6 +96,51 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .check input { width: auto; margin-top: 4px; }
 
+/* Day picker toggle buttons */
+.day-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.day-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0;
+}
+.day-btn input[type="checkbox"],
+.day-btn input[type="radio"] {
+  display: none;
+}
+.day-btn span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1.5px solid #dde3ea;
+  background: #f8fafc;
+  color: #475569;
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
+  user-select: none;
+}
+.day-btn input[type="checkbox"]:checked + span,
+.day-btn input[type="radio"]:checked + span {
+  background: var(--red);
+  border-color: var(--red);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(204,30,46,.30);
+}
+.day-btn span:hover {
+  border-color: rgba(204,30,46,.50);
+  color: var(--red);
+}
+
 /* Submit */
 .btn-submit {
   display: inline-block;

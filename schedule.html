@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coach Schedule — Eagle Stars Soccer Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="CSS/schedule.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ─── LOGIN ──────────────────────────────────── -->
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">
+        EAGLE <span class="red">STARS</span>
+      </div>
+      <p class="login-sub">SOCCER ACADEMY · COACH PORTAL</p>
+      <label for="pwd-input">Access Code</label>
+      <input type="password" id="pwd-input" placeholder="Enter access code" autocomplete="current-password" />
+      <button id="login-btn">Enter Dashboard</button>
+      <p id="login-error"></p>
+    </div>
+  </div>
+
+  <!-- ─── DASHBOARD ──────────────────────────────── -->
+  <div id="dashboard" class="hidden">
+
+    <header class="dash-header">
+      <div class="header-brand">
+        <span class="header-logo">EAGLE <span class="red">STARS</span></span>
+        <span class="header-sub">COACH SCHEDULE</span>
+      </div>
+      <button id="logout-btn">Sign Out</button>
+    </header>
+
+    <main class="dash-main">
+
+      <div class="date-nav">
+        <button class="arrow-btn" id="prev-day">&#8249;</button>
+        <div class="date-center">
+          <input type="date" id="date-picker" />
+          <div id="date-label" class="date-label"></div>
+        </div>
+        <button class="arrow-btn" id="next-day">&#8250;</button>
+        <button class="today-btn" id="today-btn">Today</button>
+        <button class="today-btn" id="refresh-btn" style="margin-left:auto;">&#8635; Refresh</button>
+      </div>
+
+      <div class="view-tabs">
+        <button class="tab-btn active" id="tab-day">Day View</button>
+        <button class="tab-btn" id="tab-all">All Players</button>
+      </div>
+
+      <div id="status-bar" class="status-bar"></div>
+      <div id="schedule-content"></div>
+
+    </main>
+  </div>
+
+  <script src="js/schedule.js"></script>
+</body>
+</html>

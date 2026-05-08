@@ -59,12 +59,24 @@
         <option>Club/Select Player</option>
       </select>
     </div>
-    <div><label>Preferred Training Days</label>
-      <select name="Preferred Days">
-        <option>Weekdays</option>
-        <option>Weekends</option>
-        <option>Either / Flexible</option>
-      </select>
+    <div class="full"><label>Preferred Training Days</label>
+      <div class="day-picker">
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Monday" /><span>Mon</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Tuesday" /><span>Tue</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Wednesday" /><span>Wed</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Thursday" /><span>Thu</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Friday" /><span>Fri</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Saturday" /><span>Sat</span></label>
+        <label class="day-btn"><input type="checkbox" name="Preferred Training Days" value="Sunday" /><span>Sun</span></label>
+      </div>
+    </div>
+    <div class="full"><label>Preferred Training Time</label>
+      <div class="day-picker">
+        <label class="day-btn"><input type="radio" name="Preferred Time" value="Morning (9-11 AM)" /><span>9–11 AM</span></label>
+        <label class="day-btn"><input type="radio" name="Preferred Time" value="Midday (11 AM-1 PM)" /><span>11–1 PM</span></label>
+        <label class="day-btn"><input type="radio" name="Preferred Time" value="Afternoon (2-4 PM)" /><span>2–4 PM</span></label>
+        <label class="day-btn"><input type="radio" name="Preferred Time" value="Evening (5-7 PM)" /><span>5–7 PM</span></label>
+      </div>
     </div>
     <div><label>How Did You Hear About Us?</label>
       <select name="How Did You Hear">
