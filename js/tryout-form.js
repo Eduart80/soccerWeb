@@ -1,6 +1,17 @@
 const EMAILJS_SERVICE          = 'service_kvekqai';
 const EMAILJS_TEMPLATE_WELCOME = 'template_rxcawui';
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyZ6OpoP4zFFmXZDxvjviS9WrMxaHJ9TIDLFI8dpwtgNhq30k8IRFM5uY3dYgVtzkhaWg/exec';
+const DB_API_URL = '/api/save-tryout.php'; // Ionos MySQL endpoint
+
+function saveToDB(payload) {
+  return fetch(DB_API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(function(res) { return res.json(); })
+  .catch(function() { return { success: false }; });
+}
 
 function saveToSheets(payload) {
   if (!SHEETS_URL || SHEETS_URL === 'PASTE_YOUR_WEB_APP_URL_HERE') return;
@@ -54,6 +65,23 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     waiver:         data.waiver,
     reply_to:       data.parent_email
   };
+
+  saveToDB({
+    first_name:     data.first_name,
+    last_name:      data.last_name,
+    age:            data.age,
+    dob:            data.dob,
+    parent_name:    data.parent_name,
+    parent_phone:   data.parent_phone,
+    parent_email:   data.parent_email,
+    level:          data.level,
+    preferred_days: data.preferred_days,
+    preferred_time: data.preferred_time,
+    referral:       data.referral,
+    medical_notes:  data.medical_notes,
+    goals:          data.goals,
+    waiver:         data.waiver
+  });
 
   saveToSheets({
     form_type:      'Free 7-Day Tryout',

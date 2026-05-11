@@ -339,8 +339,91 @@ body {
 .card-days {
   font-size: .78rem;
   color: #666;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
+
+/* ── COACH ASSIGN ROW ─────────────────────────────── */
+.card-coach-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.coach-select {
+  flex: 1;
+  padding: 7px 10px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: var(--text);
+  font: inherit;
+  font-size: .78rem;
+  cursor: pointer;
+  transition: border-color .2s;
+}
+.coach-select:focus {
+  outline: none;
+  border-color: var(--red);
+}
+.coach-save-btn {
+  padding: 7px 14px;
+  background: transparent;
+  border: 1px solid var(--red);
+  color: var(--red);
+  border-radius: 8px;
+  font: inherit;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s, color .2s;
+}
+.coach-save-btn:hover { background: var(--red); color: #fff; }
+.coach-save-btn:disabled { opacity: .5; cursor: not-allowed; }
+.coach-save-status {
+  font-size: .75rem;
+  font-weight: 700;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+/* ── TRYOUT ACTIONS ───────────────────────────────── */
+.tryout-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+  background: rgba(16,163,74,.07);
+  border: 1px solid rgba(16,163,74,.2);
+  border-radius: 8px;
+}
+.tryout-expiry {
+  font-size: .75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.convert-btn {
+  margin-left: auto;
+  padding: 5px 12px;
+  background: transparent;
+  border: 1px solid #4ade80;
+  color: #4ade80;
+  border-radius: 6px;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background .2s, color .2s;
+}
+.convert-btn:hover { background: #4ade80; color: #0d0d0d; }
+.convert-btn:disabled { opacity: .5; cursor: not-allowed; }
+
 .card-phone {
   display: inline-block;
   font-size: .82rem;
@@ -371,9 +454,76 @@ body {
 
 /* ── RESPONSIVE ───────────────────────────────────── */
 @media (max-width: 600px) {
+
+  /* Login */
   .login-card { padding: 36px 24px 28px; }
-  .dash-header { padding: 14px 4%; }
-  .dash-main { padding: 24px 4% 60px; }
-  .cards { grid-template-columns: 1fr; }
-  .date-nav { gap: 8px; }
+
+  /* Header */
+  .dash-header { padding: 12px 4%; }
+  .header-logo { font-size: 1.3rem; }
+  .header-sub  { display: none; }
+  #logout-btn  { padding: 7px 12px; font-size: .72rem; }
+
+  /* Main */
+  .dash-main { padding: 20px 4% 60px; }
+
+  /* Date nav — arrows + today on one row, picker full width below */
+  .date-nav {
+    gap: 8px;
+    display: grid;
+    grid-template-columns: 44px 1fr 44px auto auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+  }
+  .arrow-btn   { width: 44px; height: 44px; font-size: 1.4rem; }
+  .date-center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: 0;
+  }
+  #date-picker { font-size: .85rem; }
+  .date-label  { font-size: 1.2rem; }
+  .today-btn   { padding: 9px 14px; font-size: .72rem; }
+
+  /* Tabs — stretch full width */
+  .view-tabs { gap: 6px; }
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 8px;
+    font-size: .75rem;
+  }
+
+  /* Cards — single column, tighter padding */
+  .cards { grid-template-columns: 1fr; gap: 12px; }
+  .player-card { padding: 16px; }
+
+  /* Card name + badge — prevent overflow */
+  .card-top { flex-wrap: wrap; gap: 6px; }
+  .player-name { font-size: .95rem; }
+  .type-badge  { font-size: .62rem; }
+
+  /* Card details — wrap on tiny screens */
+  .card-details { flex-wrap: wrap; gap: 8px; }
+
+  /* Coach row — stack select on its own row, button + status below */
+  .card-coach-row { flex-wrap: wrap; gap: 6px; }
+  .coach-select   { flex: 1 1 100%; font-size: .82rem; padding: 9px 10px; }
+  .coach-save-btn { flex: 1; text-align: center; padding: 9px; }
+  .coach-save-status { flex: 0 0 auto; }
+
+  /* Tryout actions — stack expiry above convert button */
+  .tryout-actions { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .convert-btn    { margin-left: 0; width: 100%; text-align: center; padding: 9px; }
+
+  /* Phone link — bigger tap target */
+  .card-phone { padding: 6px 0; font-size: .88rem; }
+}
+
+@media (max-width: 380px) {
+  .date-nav {
+    grid-template-columns: 40px 1fr 40px;
+  }
+  #today-btn, #refresh-btn { display: none; }
+  .arrow-btn { width: 40px; height: 40px; }
 }
