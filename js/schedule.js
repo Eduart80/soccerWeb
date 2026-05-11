@@ -11,7 +11,7 @@ const COACH_TOKEN = 'eagles-coach-2026'; // must match COACH_TOKEN in Apps Scrip
 // ── TEST MODE ─────────────────────────────────────────────────────────────────
 // Set to true to use fake data (no sheet needed). Set to false for live data.
 // NOTE: Live data requires HTTPS hosting (e.g. Netlify). Will not work from http://localhost.
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 // ── DB MODE ───────────────────────────────────────────────────────────────────
 // Set to true to fetch from the Ionos MySQL database via /api/get-schedule.php.

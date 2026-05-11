@@ -37,7 +37,7 @@ document.getElementById('registration-form').addEventListener('submit', function
     return 'Tuesday, Wednesday, Thursday';
   }
   function getTimeFromLevel(lvl) {
-    if (lvl === 'Advanced' || lvl === 'Club/Select Player') return '7:20 - 8:20 PM';
+    if (lvl === 'Advanced') return '7:20 - 8:20 PM';
     if (lvl === 'Private') return 'Private (6:15 - 7:15 PM / 7:20 - 8:20 PM)';
     return '6:15 - 7:15 PM';
   }
