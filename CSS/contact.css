@@ -96,6 +96,26 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .check input { width: auto; margin-top: 4px; }
 
+/* Training days info block */
+.training_days {
+  grid-column: 1 / -1;
+}
+.training_days > label {
+  background: linear-gradient(to right, #ececec, transparent);
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+.training_days h5,
+.training_days label,
+.training_days span {
+  color: var(--dark);
+}
+.training_days p {
+  color: var(--dark);
+  padding-left: 1rem;
+  font-size: 14px;
+}
+
 /* Day picker toggle buttons */
 .day-picker {
   display: flex;

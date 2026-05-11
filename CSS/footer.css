@@ -43,6 +43,12 @@ footer ul a:hover { color: var(--white); }
 .spaces-limited { font-size: .62rem; font-weight: 800; letter-spacing: 2px; border-radius: 15px; text-transform: uppercase; color: var(--red); border: 1px solid var(--red); padding: 3px 8px; animation: blink 2s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
 
+.social-links { display: flex; gap: 1rem; margin-top: .5rem; }
+.social-links a { display: inline-flex; align-items: center; gap: .35rem; font-size: 1.5rem; font-weight: 600; color: #1f0f6c; text-decoration: none; transition: color .2s; }
+.social-links a:hover { color: var(--red); }
+.social-links .fa-facebook { color: #0b366e; }
+.social-links .fa-instagram { color: #2a127e; }
+
 @media (max-width: 860px) {
   .footer-top { grid-template-columns: 1fr; gap: 2rem; }
   .join-bottom { flex-direction: column; align-items: flex-start; }

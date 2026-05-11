@@ -10,6 +10,7 @@
   <link href="CSS/index.css" rel="stylesheet"/>
   <link href="CSS/nav.css" rel="stylesheet"/>
   <link href="CSS/footer.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -57,15 +58,15 @@
     </div>
   </div>
 </section>
-<!-- ─── PARALLAX SECTION ─────────────────────────── -->
-<!-- <section class="parallax-banner">
-  <div class="parallax-inner">
-    <p class="parallax-eyebrow">Frisco, Texas 75035</p>
-    <h2 class="parallax-heading">SOCCER<br><span>ACADEMY</span></h2>
-    <p class="parallax-sub">We are not just another soccer program. We are a skills-only development academy built for kids who want to master the ball, play with confidence, and grow step by step.</p>
-    
-  </div>
-</section> -->
+<!-- ─── VIDEO SECTION ─────────────────────────── -->
+<section class="video-banner">
+  <video id="banner-video" autoplay muted loop playsinline>
+    <source src="/image/team_game.mp4" type="video/mp4" />
+  </video>
+  <button id="mute-btn" class="mute-btn" aria-label="Unmute video">
+    <i class="fa-solid fa-volume-xmark"></i>
+  </button>
+</section>
 
 <!-- SECTION 2: MASTERY STATEMENT -->
 <section class="mastery" id="mastery">
@@ -159,6 +160,10 @@
         <span class="qr-label">SCAN QR CODE</span>
       </div>
       <span class="spaces-limited">SPACES ARE LIMITED!</span>
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/18P1ndR6Mu/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></i></a>
+        <a href="https://www.instagram.com/eagle_stars2026" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></i></a>
+      </div>
     </div>
   </div>
     </div>
@@ -177,6 +182,18 @@
     colorLight: '#ffffff',
     correctLevel: QRCode.CorrectLevel.H
   });
+</script>
+<script>
+  (function() {
+    var video = document.getElementById('banner-video');
+    var btn   = document.getElementById('mute-btn');
+    var icon  = btn.querySelector('i');
+    btn.addEventListener('click', function() {
+      video.muted = !video.muted;
+      icon.className = video.muted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+      btn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+    });
+  })();
 </script>
 <script src="js/nav.js"></script>
 

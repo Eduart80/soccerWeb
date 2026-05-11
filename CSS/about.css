@@ -20,7 +20,6 @@
       background: linear-gradient(to bottom, #f6f6f6 40%, rgba(255, 255, 255, 0.05) 100%);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
     .nav-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.15rem; letter-spacing: 2px; line-height: 1.1;color: var(--dark); }
     .nav-logo-text .red { color: var(--red); }
     .nav-logo-text .sub { display: block; font-size: .75rem; letter-spacing: 3px; color: rgb(65, 64, 64); }

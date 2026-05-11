@@ -230,6 +230,7 @@
     }
     @media (max-width: 540px) {
       .hero-title { font-size: clamp(2.2rem, 11vw, 3.5rem); }
+      .hero-text p {font-size: clamp(1.5rem, 5vw, 8rem);}
       .gallery-grid { grid-template-columns: 1fr; }
       .grid { grid-template-columns: 1fr; }
     }
@@ -344,6 +345,51 @@
       }
     }
 
+    /* ── VIDEO BANNER ──────────────────────────────────── */
+    .video-banner {
+      width: 100vw;
+      /* max-height: 500px; */
+      overflow: hidden;
+      line-height: 0;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 0;
+    }
+    .mute-btn {
+      position: absolute;
+      bottom: 16px;
+      right: 20px;
+      z-index: 10;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s;
+    }
+    .mute-btn:hover { background: rgba(0,0,0,0.8); }
+    .video-banner video {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    @media (min-width: 1084px) {
+      .video-banner video {
+        height: 100%;
+        object-position: center 80%;
+      }
+    }
+
     /* ── MASTERY STATEMENT ────────────────────────────── */
     .mastery {
       background: var(--white); padding: 1px 5% 1px;
@@ -366,79 +412,4 @@
       font-size: clamp(.92rem, 2.5vw, 1.05rem); line-height: 1.8;
     }
 
-    /* ── PARALLAX BANNER ──────────────────────────────── */
-    .parallax-banner {
-      position: relative;
-      background-image: url('../image/footbal fieald.png');
-      background-attachment: fixed;
-      background-position: center center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      min-height: 520px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .parallax-banner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.58);
-    }
-    .parallax-inner {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 4rem 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.1rem;
-    }
-    .parallax-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .parallax-heading {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      line-height: 1.05;
-      letter-spacing: 3px;
-      color: #ffffff;
-      text-shadow: 0 4px 24px rgba(0,0,0,.5);
-    }
-    .parallax-heading span { color: var(--red); }
-    .parallax-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(.95rem, 2.2vw, 1.15rem);
-      color: rgba(255,255,255,.82);
-      max-width: 480px;
-      line-height: 1.6;
-    }
-    .parallax-cta {
-      display: inline-block;
-      margin-top: .4rem;
-      padding: .85rem 2.4rem;
-      background: var(--red);
-      color: #fff;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.15rem;
-      letter-spacing: .12em;
-      border-radius: 2px;
-      transition: background .2s, transform .2s;
-    }
-    .parallax-cta:hover {
-      background: #a8111e;
-      transform: translateY(-2px);
-    }
-    @media (max-width: 768px) {
-      .parallax-banner {
-        background-attachment: scroll;
-        min-height: 400px;
-      }
-    }
+   
