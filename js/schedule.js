@@ -97,6 +97,7 @@ function initDashboard() {
     activeTab = 'day';
     document.getElementById('tab-day').classList.add('active');
     document.getElementById('tab-all').classList.remove('active');
+    document.getElementById('download-excel').classList.add('hidden');
     document.getElementById('date-nav') && (document.querySelector('.date-nav').style.opacity = '1');
     renderSchedule();
   });
@@ -104,8 +105,10 @@ function initDashboard() {
     activeTab = 'all';
     document.getElementById('tab-all').classList.add('active');
     document.getElementById('tab-day').classList.remove('active');
+    document.getElementById('download-excel').classList.remove('hidden');
     renderSchedule();
   });
+  document.getElementById('download-excel').addEventListener('click', exportToExcel);
 }
 
 function todayStr() {
@@ -429,7 +432,50 @@ function saveCoach(btn) {
   .finally(function() { btn.disabled = false; });
 }
 
-// ── CONVERT TRYOUT TO REGISTRATION ───────────────────────────────────────────
+// ── EXPORT TO EXCEL ───────────────────────────────────────────────────────────
+function exportToExcel() {
+  var regs    = allData.filter(function(r){ return r._sheet === 'Registrations'; });
+  var tryouts = allData.filter(function(r){ return r._sheet === 'Tryouts' && !isExpired(r); });
+
+  var wb = XLSX.utils.book_new();
+
+  function toRows(records) {
+    return records.map(function(r) {
+      return {
+        'Submitted At':   r['Submitted At']   || '',
+        'Player Name':    r['Player Name']    || '',
+        'Age':            r['Age']            || '',
+        'Date of Birth':  r['Date of Birth']  || '',
+        'Level':          r['Level']          || '',
+        'Preferred Days': r['Preferred Days'] || '',
+        'Preferred Time': r['Preferred Time'] || '',
+        'Assigned Coach': r['Assigned Coach'] || '',
+        'Parent Name':    r['Parent Name']    || '',
+        'Parent Phone':   r['Parent Phone']   || '',
+        'Parent Email':   r['Parent Email']   || '',
+        'Medical Notes':  r['Medical Notes']  || '',
+        'Goals':          r['Goals']          || '',
+        'Waiver':         r['Waiver']         || ''
+      };
+    });
+  }
+
+  if (regs.length > 0) {
+    var wsReg = XLSX.utils.json_to_sheet(toRows(regs));
+    XLSX.utils.book_append_sheet(wb, wsReg, 'Registrations');
+  }
+  if (tryouts.length > 0) {
+    var wsTry = XLSX.utils.json_to_sheet(toRows(tryouts));
+    XLSX.utils.book_append_sheet(wb, wsTry, 'Tryouts');
+  }
+
+  var date = new Date();
+  var stamp = date.getFullYear() + '-'
+    + String(date.getMonth() + 1).padStart(2, '0') + '-'
+    + String(date.getDate()).padStart(2, '0');
+
+  XLSX.writeFile(wb, 'EagleStars_Players_' + stamp + '.xlsx');
+}
 function convertToRegistration(btn) {
   var card = btn.closest('.player-card');
   var id   = parseInt(card.dataset.id, 10);

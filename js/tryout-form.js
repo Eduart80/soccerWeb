@@ -31,6 +31,16 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
   btn.textContent = 'Sending…';
 
   const f = this;
+  const levelVal = f['Player Level'].value;
+  function getDaysFromLevel(lvl) {
+    if (lvl === 'Private') return 'Friday';
+    return 'Tuesday, Wednesday, Thursday';
+  }
+  function getTimeFromLevel(lvl) {
+    if (lvl === 'Advanced') return '7:20 - 8:20 PM';
+    if (lvl === 'Private') return 'Private (6:15 - 7:15 PM / 7:20 - 8:20 PM)';
+    return '6:15 - 7:15 PM';
+  }
   const data = {
     first_name:     f['Player First Name'].value,
     last_name:      f['Player Last Name'].value,
@@ -39,9 +49,9 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     parent_name:    f['Parent Guardian Name'].value,
     parent_phone:   f['Parent Phone'].value,
     parent_email:   f['Parent Email'].value,
-    level:          f['Player Level'].value,
-    preferred_days: Array.from(f.querySelectorAll('input[name="Preferred Training Days"]:checked')).map(function(cb){ return cb.value; }).join(', ') || 'Not specified',
-    preferred_time: f.querySelector('input[name="Preferred Time"]:checked') ? f.querySelector('input[name="Preferred Time"]:checked').value : 'Not specified',
+    level:          levelVal,
+    preferred_days: getDaysFromLevel(levelVal),
+    preferred_time: getTimeFromLevel(levelVal),
     referral:       f['How Did You Hear'].value,
     medical_notes:  f['Medical Notes'].value,
     goals:          f['Goals'].value,

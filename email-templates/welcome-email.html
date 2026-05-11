@@ -19,12 +19,20 @@
     <!-- BODY -->
     <div style="padding:32px;">
 
+      <div style="text-align:center; margin-bottom:24px;">
+        <span style="display:inline-block; background-color:#cc1e2e; color:#ffffff;
+                     font-size:14px; font-weight:bold; letter-spacing:1px;
+                     padding:8px 24px; border-radius:20px;">
+          {{form_type}}
+        </span>
+      </div>
+
       <p style="font-size:16px; color:#333;">Hi <strong>{{to_name}}</strong>,</p>
 
       <p style="font-size:16px; color:#333; line-height:1.6;">
-        Welcome to the <strong>Eagle Stars Soccer Academy</strong> family! We're excited to have
-        <strong>{{player_name}}</strong> join us. We'll be reaching out shortly to confirm your
-        schedule and next steps. Scroll down for locations and payment details.
+        Thank you for submitting a <strong>{{form_type}}</strong> for <strong>{{player_name}}</strong>
+        at <strong>Eagle Stars Soccer Academy</strong>! We have received your form and will be in
+        touch shortly to confirm the schedule and next steps.
       </p>
 
       <!-- SUBMISSION SUMMARY -->
@@ -34,9 +42,10 @@
           <tr><td style="padding:4px 0; width:140px; color:#666;">Name</td><td><strong>{{player_name}}</strong></td></tr>
           <tr><td style="padding:4px 0; color:#666;">Age</td><td>{{player_age}}</td></tr>
           <tr><td style="padding:4px 0; color:#666;">Level</td><td>{{player_level}}</td></tr>
-          <tr><td style="padding:4px 0; color:#666;">Preferred Days</td><td>{{preferred_days}}</td></tr>
-          <tr><td style="padding:4px 0; color:#666;">Preferred Time</td><td>{{preferred_time}}</td></tr>
+          <tr><td style="padding:4px 0; color:#666;">Training Days</td><td>{{preferred_days}}</td></tr>
+          <tr><td style="padding:4px 0; color:#666;">Training Time</td><td>{{preferred_time}}</td></tr>
         </table>
+        <p style="margin:10px 0 0; font-size:12px; color:#888;">* Schedule is based on selected level. Coach will confirm exact session details.</p>
       </div>
 
       <div style="background:#f9f9f9; border-left:4px solid #cc1e2e; padding:16px 20px; border-radius:4px; margin-bottom:20px;">

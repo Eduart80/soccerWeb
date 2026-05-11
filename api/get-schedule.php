@@ -119,6 +119,7 @@ if ($res) {
             'Medical Notes'  => $row['medical_notes'],
             'Goals'          => $row['goals'],
             'Waiver'         => $row['waiver_accepted'],
+            'Referral'       => $row['referral'] ?? '',
         ];
     }
     $res->free();
