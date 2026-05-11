@@ -4,9 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Player Development Program — Eagle Stars Soccer Academy</title>
+  <link rel="icon" type="image/jpeg" href="image/logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link href="/CSS/programs.css" rel="stylesheet"/>
+  <link href="CSS/programs.css" rel="stylesheet"/>
+  <link href="CSS/nav.css" rel="stylesheet"/>
+  <link href="CSS/footer.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body class="pdp-page">
 
@@ -17,13 +21,12 @@
     <div class="nav-logo-text">EAGLE <span class="red">STARS</span><span class="sub">SOCCER ACADEMY</span></div>
   </div>
   <ul>
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="/coach.html">Coach</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#philosophy">About</a></li>
-    <li><a href="#join">Contact</a></li>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="coach.html">Coaches</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
   </ul>
-  <a href="#join" class="nav-cta">Register</a>
+  <a href="contact.html" class="nav-cta">Register</a>
   <div class="nav-hamburger"><span></span><span></span><span></span></div>
 </nav>
 
@@ -35,17 +38,17 @@
   <!-- LEFT: Logo + Action Photo -->
   <div class="hero-left">
     <div class="hero-left-photo">
-      <img src="/image/firstpic.jpg" alt="Eagle Stars Player" />
+      <img src="image/firstpic.jpg" alt="Eagle Stars Player" />
     </div>
   </div>
 
   <!-- CENTER: Title + Philosophy -->
   <div class="hero-center">
-    <h1 class="hero-title">PLAYER<br>DEVELOPMENT<br>PROGRAM</h1>
-    <p class="hero-tagline">MASTER THE BALL. MASTER THE GAME.</p>
+    <h1 class="hero-title">PLAYER<br><span style="color: #cc1e2e;">DEVELOPMENT</span><br>PROGRAM</h1>
+    <p class="hero-tagline"><span style="color: #111111;">MASTER THE BALL.</span> MASTER THE GAME.</p>
     <div class="philosophy-box">
       <h3>OUR PHILOSOPHY</h3>
-      <p>At Eagle Stars, development comes before results. We focus on building complete players through Ball Mastery, Game Awareness, and Game Intelligence.</p>
+      <p>At Eagle Stars we focus on building complete players through Ball Mastery, Game Awareness, and Game Intelligence.</p>
       <div class="phi-icons">
         <div class="phi-icon-item">
           <span class="ico">⚽</span>
@@ -71,11 +74,10 @@
       </div>
     </div>
   </div>
-
   <!-- RIGHT: Why Eagle Stars + Photo -->
   <div class="hero-right">
     <div class="hero-right-photo">
-      <img src="/image/firstpic.jpg" alt="Eagle Stars Training" />
+      <img src="image/logo.jpg" alt="Eagle Stars Training" />
     </div>
     <p class="why-title">WHY <em>EAGLE STARS?</em></p>
     <ul class="why-list">
@@ -100,7 +102,7 @@
         Building smart, skilled &amp; competitive players
       </li>
     </ul>
-    <div class="location-badge">📍 &nbsp;Frisco, Texas</div>
+    <div class="location-badge">📍 &nbsp;Frisco, Texas 75035</div>
   </div>
 
 </div>
@@ -122,7 +124,7 @@
     <!-- Pillar 1 -->
     <div class="pillar-row">
       <div class="pillar-num-cell"><span>1</span></div>
-      <div class="pillar-icon-cell"><span class="ico">⚽</span></div>
+      <div class="pillar-icon-cell"><span class="ico"><img src="image/soccer-ball-variant.png" alt="ball"/></span></div>
       <div class="pillar-content-cell">
         <h3>BALL MASTERY</h3>
         <ul>
@@ -135,7 +137,7 @@
         <p class="pillar-goal"><strong>GOAL:</strong> Player never panics on the ball</p>
       </div>
       <div class="pillar-photo-cell">
-        <img src="image/IMG-20260427-WA0010.jpg" alt="Ball Mastery" />
+        <img src="image/ballMastery.png" alt="Ball Mastery" style="object-position: 70% top;" />
       </div>
     </div>
 
@@ -154,7 +156,7 @@
         <p class="pillar-goal"><strong>GOAL:</strong> Player plays faster without rushing</p>
       </div>
       <div class="pillar-photo-cell">
-        <img src="image/IMG-20260427-WA0011.jpg" alt="Game Awareness" />
+        <img src="image/kick.png" alt="Game Awareness" style="object-position: right top;" />
       </div>
     </div>
 
@@ -173,7 +175,7 @@
         <p class="pillar-goal"><strong>GOAL:</strong> Smart players, not robotic players</p>
       </div>
       <div class="pillar-photo-cell">
-        <img src="image/IMG-20260427-WA0012.jpg" alt="Game Intelligence" />
+        <img src="image/game.png" alt="Game Intelligence" style="object-position: right top;" />
       </div>
     </div>
 
@@ -195,7 +197,7 @@
         <p class="pillar-goal"><strong>GOAL:</strong> Win your moment</p>
       </div>
       <div class="pillar-photo-cell">
-        <img src="image/IMG-20260424-WA0000.jpg" alt="1v1 Dominance" />
+        <img src="image/1v1.png" alt="1v1 Dominance" style="object-position: center top;" />
       </div>
     </div>
 
@@ -216,7 +218,7 @@
         <p class="pillar-goal"><strong>GOAL:</strong> Right decision.</p>
       </div>
       <div class="pillar-photo-cell">
-        <img src="image/IMG-20260427-WA0012.jpg" alt="Decision Making" />
+        <img src="image/decision_making.png" alt="Decision Making" style="object-position: center top;" />
       </div>
     </div>
 
@@ -241,7 +243,7 @@
         </ul>
       </div>
       <div class="ts-photo-cell">
-        <img src="image/IMG-20260427-WA0010.jpg" alt="Activation" />
+        <img src="image/activation.png" alt="Activation" />
       </div>
     </div>
 
@@ -257,7 +259,7 @@
         </ul>
       </div>
       <div class="ts-photo-cell">
-        <img src="image/IMG-20260427-WA0011.jpg" alt="Technical Development" />
+        <img src="image/tech_dev.png" alt="Technical Development" />
       </div>
     </div>
 
@@ -273,7 +275,7 @@
         </ul>
       </div>
       <div class="ts-photo-cell">
-        <img src="image/IMG-20260427-WA0012.jpg" alt="Applied Skills" />
+        <img src="image/skills.png" alt="Applied Skills" />
       </div>
     </div>
 
@@ -289,7 +291,7 @@
         </ul>
       </div>
       <div class="ts-photo-cell">
-        <img src="image/IMG-20260424-WA0000.jpg" alt="Game Awareness" />
+        <img src="image/awarenes.png" alt="Game Awareness" />
       </div>
     </div>
 
@@ -305,7 +307,7 @@
         </ul>
       </div>
       <div class="ts-photo-cell">
-        <img src="image/IMG-20260427-WA0010.jpg" alt="Game" />
+        <img src="image/game2.png" alt="Game" />
       </div>
     </div>
 
@@ -366,9 +368,6 @@
           <p>Decision Making &amp; Game Intelligence — Small-sided games, real game scenarios</p>
         </div>
       </div>
-      <div class="week-photo">
-        <img src="image/IMG-20260427-WA0012.jpg" alt="Training Week" />
-      </div>
     </div>
   </div>
 
@@ -408,70 +407,6 @@
     </div>
     <p class="eval-note">Detailed reports shared with players and parents.</p>
   </div>
-
-</div>
-
-<!-- ═══════════════════════════════════════════════
-     COACH + JOIN CTA
-════════════════════════════════════════════════ -->
-<div class="cta-row" id="join">
-
-  <!-- Coach Block -->
-  <div class="coach-block">
-    <div class="coach-block-photo">
-      <img src="/image/firstpic.jpg" alt="Coach Klaudio Aliaj" />
-    </div>
-    <div class="coach-block-text">
-      <div class="coach-name">COACH <em>KLAUDIO ALIAJ</em></div>
-      <div class="coach-role">Founder &amp; Director of Coaching</div>
-      <div class="coach-academy">Eagle Stars Soccer Academy</div>
-      <blockquote class="coach-quote">
-        "Our mission is simple: to develop the player, the person, and the leader."
-      </blockquote>
-    </div>
-  </div>
-
-  <!-- Center Logo/Location -->
-  <div class="cta-center">
-    <img src="/image/texas.jpg" alt="Eagle Stars" />
-  </div>
-
-  <!-- Join Block -->
-  <div class="join-block">
-    <h2>JOIN THE <em>EAGLE STARS</em> FAMILY!</h2>
-    <p class="join-tagline">Elite Training. Strong Values. Bright Futures.</p>
-    <ul class="contact-list">
-      <li><span class="ci">📞</span><a href="tel:2142353093">214-235-3093</a></li>
-      <li><span class="ci">✉️</span><a href="mailto:info@eaglestarsacademy.com">info@eaglestarsacademy.com</a></li>
-      <li><span class="ci">🌐</span><a href="https://www.eaglestarsacademy.com" target="_blank">www.eaglestarsacademy.com</a></li>
-      <li><span class="ci">📍</span>Frisco, Texas</li>
-    </ul>
-    <div class="join-bottom">
-      <a href="mailto:info@eaglestarsacademy.com" class="btn-register">REGISTER TODAY</a>
-      <div class="qr-block">
-        <div class="qr-placeholder">
-          <!-- QR pattern SVG -->
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="#000">
-            <rect x="2" y="2" width="14" height="14"/><rect x="4" y="4" width="10" height="10" fill="#fff"/>
-            <rect x="6" y="6" width="6" height="6"/>
-            <rect x="28" y="2" width="14" height="14"/><rect x="30" y="4" width="10" height="10" fill="#fff"/>
-            <rect x="32" y="6" width="6" height="6"/>
-            <rect x="2" y="28" width="14" height="14"/><rect x="4" y="30" width="10" height="10" fill="#fff"/>
-            <rect x="6" y="32" width="6" height="6"/>
-            <rect x="18" y="2" width="6" height="6"/><rect x="18" y="10" width="6" height="6"/>
-            <rect x="18" y="18" width="6" height="6"/><rect x="26" y="18" width="6" height="6"/>
-            <rect x="34" y="18" width="6" height="6"/><rect x="18" y="26" width="4" height="4"/>
-            <rect x="24" y="24" width="4" height="4"/><rect x="30" y="28" width="4" height="4"/>
-            <rect x="36" y="24" width="4" height="4"/><rect x="24" y="32" width="4" height="4"/>
-            <rect x="36" y="32" width="4" height="8"/>
-          </svg>
-        </div>
-        <span class="qr-label">SCAN QR CODE</span>
-      </div>
-      <span class="spaces-limited">SPACES ARE LIMITED!</span>
-    </div>
-  </div>
-
 </div>
 
 <!-- ─── FOOTER ───────────────────────────────────── -->
@@ -479,67 +414,59 @@
   <div class="footer-top">
     <div class="footer-brand">
       <img src="image/logo.jpg" alt="Eagle Stars Soccer Academy" />
-      <p>Master the Ball. Master the Game. Developing champions in Frisco, Texas.</p>
+      <p>Master the Ball. Master the Game.</p>
+      <p>Developing champions in</p>
+      <p>Frisco, Texas 75035.</p>
     </div>
-    <div>
+    <div class="join-block">
       <h4>Navigation</h4>
       <ul>
-       <li><a href="/index.html">Home</a></li>
-      <li><a href="/coach.html">Coach</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#philosophy">About</a></li>
-      <li><a href="#join">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="coach.html">Coaches</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="about.html">About</a></li>
       </ul>
     </div>
     <div>
-      <!-- Join Block -->
+  <!-- Join Block -->
   <div class="join-block">
     <h2>JOIN THE <em>EAGLE STARS</em> FAMILY!</h2>
     <p class="join-tagline">Elite Training. Strong Values. Bright Futures.</p>
     <ul class="contact-list">
-      <li><span class="ci">📞</span><a href="tel:2142353093">214-235-3093</a></li>
-      <li><span class="ci">✉️</span><a href="mailto:info@eaglestarsacademy.com">info@eaglestarsacademy.com</a></li>
+      <li><span class="ci">📞</span><a href="tel:4698502212">+1 (469) 850 2212</a></li>
+      <li><span class="ci">✉️</span><a href="mailto:info.eaglestars.sc@gmail.com">info.eaglestars.sc@gmail.com</a></li>
       <li><span class="ci">🌐</span><a href="https://www.eaglestarsacademy.com" target="_blank">www.eaglestarsacademy.com</a></li>
-      <li><span class="ci">📍</span>Frisco, Texas</li>
+      <li><span class="ci">📍</span>Frisco, Texas 75035</li>
     </ul>
     <div class="join-bottom">
-      <a href="mailto:info@eaglestarsacademy.com" class="btn-register">REGISTER TODAY</a>
+      <a href="contact.html" class="btn-register">REGISTER TODAY</a>
       <div class="qr-block">
         <div class="qr-placeholder">
-          <!-- QR pattern SVG -->
-          <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" fill="#000">
-            <rect x="2" y="2" width="14" height="14"/><rect x="4" y="4" width="10" height="10" fill="#fff"/>
-            <rect x="6" y="6" width="6" height="6"/>
-            <rect x="28" y="2" width="14" height="14"/><rect x="30" y="4" width="10" height="10" fill="#fff"/>
-            <rect x="32" y="6" width="6" height="6"/>
-            <rect x="2" y="28" width="14" height="14"/><rect x="4" y="30" width="10" height="10" fill="#fff"/>
-            <rect x="6" y="32" width="6" height="6"/>
-            <rect x="18" y="2" width="6" height="6"/><rect x="18" y="10" width="6" height="6"/>
-            <rect x="18" y="18" width="6" height="6"/><rect x="26" y="18" width="6" height="6"/>
-            <rect x="34" y="18" width="6" height="6"/><rect x="18" y="26" width="4" height="4"/>
-            <rect x="24" y="24" width="4" height="4"/><rect x="30" y="28" width="4" height="4"/>
-            <rect x="36" y="24" width="4" height="4"/><rect x="24" y="32" width="4" height="4"/>
-            <rect x="36" y="32" width="4" height="8"/>
-          </svg>
+          <div id="qr-code-canvas"></div>
         </div>
         <span class="qr-label">SCAN QR CODE</span>
       </div>
       <span class="spaces-limited">SPACES ARE LIMITED!</span>
     </div>
   </div>
-      <!-- <h4>Contact</h4>
-      <ul>
-        <li>Frisco, TX 75035</li>
-        <li><a href="tel:2142353093">214-235-3093</a></li>
-        <li><a href="mailto:info@eaglestarsacademy.com">info@eaglestarsacademy.com</a></li>
-        <li><a href="https://eaglestarsacademy.com" target="_blank">eaglestarsacademy.com</a></li>
-      </ul> -->
     </div>
   </div>
   <div class="footer-bottom">
     <p>© 2026 Eagle Stars Soccer Academy. All rights reserved.</p>
   </div>
 </footer>
+
+<script>
+  new QRCode(document.getElementById('qr-code-canvas'), {
+    text: 'https://www.eaglestarsacademy.com',
+    width: 100,
+    height: 100,
+    colorDark: '#000000',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+<script src="js/nav.js"></script>
 
 </body>
 </html>
