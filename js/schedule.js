@@ -11,7 +11,7 @@ const COACH_TOKEN = 'eagles-coach-2026'; // must match COACH_TOKEN in Apps Scrip
 // ── TEST MODE ─────────────────────────────────────────────────────────────────
 // Set to true to use fake data (no sheet needed). Set to false for live data.
 // NOTE: Live data requires HTTPS hosting (e.g. Netlify). Will not work from http://localhost.
-const TEST_MODE = false;
+const TEST_MODE = true;
 
 // ── DB MODE ───────────────────────────────────────────────────────────────────
 // Set to true to fetch from the Ionos MySQL database via /api/get-schedule.php.
@@ -20,19 +20,19 @@ const DB_MODE    = true;
 const DB_API_URL = '/api/get-schedule.php';
 
 const FAKE_DATA = [
-  { _sheet:'Registrations', _id:1, _table:'contact_registrations', 'Submitted At':'05/01/2026 09:12:00', 'Player Name':'Mateo Rivera',    'Age':8,  'Date of Birth':'2017-03-12', 'Level':'Beginner',         'Parent Name':'Carlos Rivera',   'Parent Phone':'4695551001', 'Parent Email':'carlos.r@email.com',   'Preferred Days':'Tuesday, Wednesday',  'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',             'Goals':'Improve dribbling and confidence', 'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:2, _table:'contact_registrations', 'Submitted At':'05/02/2026 10:30:00', 'Player Name':'Sofia Nguyen',     'Age':10, 'Date of Birth':'2015-07-22', 'Level':'Intermediate',     'Parent Name':'Linda Nguyen',     'Parent Phone':'4695551002', 'Parent Email':'linda.n@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'7:20 - 8:20 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'Mild asthma',      'Goals':'First touch and passing',          'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:3, _table:'contact_registrations', 'Submitted At':'05/02/2026 11:05:00', 'Player Name':'Liam Torres',      'Age':12, 'Date of Birth':'2013-11-05', 'Level':'Private',          'Parent Name':'Maria Torres',     'Parent Phone':'4695551003', 'Parent Email':'maria.t@email.com',    'Preferred Days':'Friday',              'Preferred Time':'Private (7:20 - 8:20 PM)', 'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',             'Goals':'1v1 defending and shooting',       'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:4, _table:'contact_registrations', 'Submitted At':'05/03/2026 08:45:00', 'Player Name':'Aiden Park',       'Age':7,  'Date of Birth':'2018-01-30', 'Level':'Beginner',         'Parent Name':'James Park',       'Parent Phone':'4695551004', 'Parent Email':'james.p@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'Peanut allergy',   'Goals':'Ball control and fun',             'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:5, _table:'contact_registrations', 'Submitted At':'05/03/2026 14:20:00', 'Player Name':'Isabella Gomez',   'Age':11, 'Date of Birth':'2014-09-18', 'Level':'Intermediate',     'Parent Name':'Rosa Gomez',       'Parent Phone':'4695551005', 'Parent Email':'rosa.g@email.com',     'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'7:20 - 8:20 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',             'Goals':'Speed and stamina',                'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:6, _table:'contact_registrations', 'Submitted At':'05/04/2026 09:00:00', 'Player Name':'Noah Kim',         'Age':9,  'Date of Birth':'2016-05-14', 'Level':'Beginner',         'Parent Name':'Susan Kim',        'Parent Phone':'4695551006', 'Parent Email':'susan.k@email.com',    'Preferred Days':'Wednesday',           'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'',              'Medical Notes':'None',             'Goals':'Finishing and confidence',         'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:7, _table:'contact_registrations', 'Submitted At':'05/04/2026 15:10:00', 'Player Name':'Emma Davis',       'Age':13, 'Date of Birth':'2012-12-01', 'Level':'Private',          'Parent Name':'Paul Davis',        'Parent Phone':'4695551007', 'Parent Email':'paul.d@email.com',     'Preferred Days':'Friday',              'Preferred Time':'Private (6:15 - 7:15 PM)', 'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',             'Goals':'Tactical awareness',               'Waiver':'Yes' },
-  { _sheet:'Registrations', _id:8, _table:'contact_registrations', 'Submitted At':'05/05/2026 10:00:00', 'Player Name':'Kol Doe',          'Age':5,  'Date of Birth':'2022-02-15', 'Level':'Beginner',         'Parent Name':'Milla Doe',        'Parent Phone':'1234567890', 'Parent Email':'zinaeduart@gmail.com', 'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'NA',               'Goals':'Running',                          'Waiver':'Yes' },
-  { _sheet:'Tryouts',       _id:1, _table:'tryout_registrations',  'Submitted At':'05/05/2026 11:30:00', 'Player Name':'Lucas Martinez',   'Age':10, 'Date of Birth':'2015-04-08', 'Level':'Intermediate',     'Parent Name':'Ana Martinez',     'Parent Phone':'4695552001', 'Parent Email':'ana.m@email.com',      'Preferred Days':'Tuesday, Wednesday',  'Preferred Time':'7:20 - 8:20 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',             'Goals':'Dribbling under pressure',         'Waiver':'Yes' },
-  { _sheet:'Tryouts',       _id:2, _table:'tryout_registrations',  'Submitted At':'05/06/2026 09:15:00', 'Player Name':'Olivia Chen',      'Age':8,  'Date of Birth':'2017-08-25', 'Level':'Beginner',         'Parent Name':'Wei Chen',         'Parent Phone':'4695552002', 'Parent Email':'wei.c@email.com',      'Preferred Days':'Wednesday',           'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'',              'Medical Notes':'None',             'Goals':'Ball control and teamwork',        'Waiver':'Yes' },
-  { _sheet:'Tryouts',       _id:3, _table:'tryout_registrations',  'Submitted At':'05/06/2026 13:00:00', 'Player Name':'Ethan Brown',      'Age':14, 'Date of Birth':'2011-06-17', 'Level':'Advanced',         'Parent Name':'Kevin Brown',      'Parent Phone':'4695552003', 'Parent Email':'kevin.b@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'7:20 - 8:20 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'Knee brace needed','Goals':'College prep / advanced tactics',   'Waiver':'Yes' },
-  { _sheet:'Tryouts',       _id:4, _table:'tryout_registrations',  'Submitted At':'05/07/2026 08:30:00', 'Player Name':'Ava Wilson',       'Age':9,  'Date of Birth':'2016-10-03', 'Level':'Private',          'Parent Name':'Diane Wilson',     'Parent Phone':'4695552004', 'Parent Email':'diane.w@email.com',    'Preferred Days':'Friday',              'Preferred Time':'Private (6:15 - 7:15 PM)', 'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',             'Goals':'Fun and fitness',                  'Waiver':'Yes' },
-  { _sheet:'Tryouts',       _id:5, _table:'tryout_registrations',  'Submitted At':'05/07/2026 16:45:00', 'Player Name':'Jackson Lee',      'Age':11, 'Date of Birth':'2014-02-20', 'Level':'Intermediate',     'Parent Name':'Grace Lee',        'Parent Phone':'4695552005', 'Parent Email':'grace.l@email.com',    'Preferred Days':'Thursday',            'Preferred Time':'Private (7:20 - 8:20 PM)', 'Assigned Coach':'',              'Medical Notes':'None',             'Goals':'Improve passing accuracy',         'Waiver':'Yes' },
+  { _sheet:'Registrations', _id:1, _table:'contact_registrations', 'Submitted At':'05/01/2026 09:12:00', 'Player Name':'Mateo Rivera',    'Age':8,  'Date of Birth':'2017-03-12', 'Level':'Beginner',     'Parent Name':'Carlos Rivera',  'Parent Phone':'4695551001', 'Parent Email':'carlos.r@email.com',   'Preferred Days':'Tuesday, Wednesday',  'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',              'Goals':'Improve dribbling and confidence', 'Waiver':'Yes', 'Selected Package':'8-Session Package — $240' },
+  { _sheet:'Registrations', _id:2, _table:'contact_registrations', 'Submitted At':'05/02/2026 10:30:00', 'Player Name':'Sofia Nguyen',    'Age':10, 'Date of Birth':'2015-07-22', 'Level':'Intermediate', 'Parent Name':'Linda Nguyen',   'Parent Phone':'4695551002', 'Parent Email':'linda.n@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'Mild asthma',       'Goals':'First touch and passing',          'Waiver':'Yes', 'Selected Package':'4-Session Package — $140' },
+  { _sheet:'Registrations', _id:3, _table:'contact_registrations', 'Submitted At':'05/02/2026 11:05:00', 'Player Name':'Liam Torres',     'Age':12, 'Date of Birth':'2013-11-05', 'Level':'Private',      'Parent Name':'Maria Torres',   'Parent Phone':'4695551003', 'Parent Email':'maria.t@email.com',    'Preferred Days':'Friday',              'Preferred Time':'Private (7:20 - 8:20 PM)', 'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',              'Goals':'1v1 defending and shooting',       'Waiver':'Yes', 'Selected Package':'Private Training — $80'   },
+  { _sheet:'Registrations', _id:4, _table:'contact_registrations', 'Submitted At':'05/03/2026 08:45:00', 'Player Name':'Aiden Park',      'Age':7,  'Date of Birth':'2018-01-30', 'Level':'Beginner',     'Parent Name':'James Park',     'Parent Phone':'4695551004', 'Parent Email':'james.p@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'Peanut allergy',    'Goals':'Ball control and fun',             'Waiver':'Yes', 'Selected Package':'Drop-In Session — $40'    },
+  { _sheet:'Registrations', _id:5, _table:'contact_registrations', 'Submitted At':'05/03/2026 14:20:00', 'Player Name':'Isabella Gomez',  'Age':11, 'Date of Birth':'2014-09-18', 'Level':'Intermediate', 'Parent Name':'Rosa Gomez',     'Parent Phone':'4695551005', 'Parent Email':'rosa.g@email.com',     'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'None',              'Goals':'Speed and stamina',                'Waiver':'Yes', 'Selected Package':'8-Session Package — $240' },
+  { _sheet:'Registrations', _id:6, _table:'contact_registrations', 'Submitted At':'05/04/2026 09:00:00', 'Player Name':'Noah Kim',        'Age':9,  'Date of Birth':'2016-05-14', 'Level':'Beginner',     'Parent Name':'Susan Kim',      'Parent Phone':'4695551006', 'Parent Email':'susan.k@email.com',    'Preferred Days':'Wednesday',           'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'',              'Medical Notes':'None',              'Goals':'Finishing and confidence',         'Waiver':'Yes', 'Selected Package':'Not selected'             },
+  { _sheet:'Registrations', _id:7, _table:'contact_registrations', 'Submitted At':'05/04/2026 15:10:00', 'Player Name':'Emma Davis',      'Age':13, 'Date of Birth':'2012-12-01', 'Level':'Private',      'Parent Name':'Paul Davis',     'Parent Phone':'4695551007', 'Parent Email':'paul.d@email.com',     'Preferred Days':'Friday',              'Preferred Time':'Private (6:15 - 7:15 PM)', 'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',              'Goals':'Tactical awareness',               'Waiver':'Yes', 'Selected Package':'Private Training — $80'   },
+  { _sheet:'Registrations', _id:8, _table:'contact_registrations', 'Submitted At':'05/05/2026 10:00:00', 'Player Name':'Kol Doe',         'Age':5,  'Date of Birth':'2022-02-15', 'Level':'Beginner',     'Parent Name':'Milla Doe',      'Parent Phone':'1234567890', 'Parent Email':'zinaeduart@gmail.com', 'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'NA',                'Goals':'Running',                          'Waiver':'Yes', 'Selected Package':'4-Session Package — $140' },
+  { _sheet:'Tryouts',       _id:1, _table:'tryout_registrations',  'Submitted At':'05/11/2026 08:00:00', 'Player Name':'Lucas Martinez',  'Age':10, 'Date of Birth':'2015-04-08', 'Level':'Intermediate', 'Parent Name':'Ana Martinez',   'Parent Phone':'4695552001', 'Parent Email':'ana.m@email.com',      'Preferred Days':'Tuesday, Wednesday',  'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',              'Goals':'Dribbling under pressure',         'Waiver':'Yes', 'Selected Package':'Not selected'             },
+  { _sheet:'Tryouts',       _id:2, _table:'tryout_registrations',  'Submitted At':'05/11/2026 09:15:00', 'Player Name':'Olivia Chen',     'Age':8,  'Date of Birth':'2017-08-25', 'Level':'Beginner',     'Parent Name':'Wei Chen',       'Parent Phone':'4695552002', 'Parent Email':'wei.c@email.com',      'Preferred Days':'Wednesday',           'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'',              'Medical Notes':'None',              'Goals':'Ball control and teamwork',        'Waiver':'Yes', 'Selected Package':'Not selected'             },
+  { _sheet:'Tryouts',       _id:3, _table:'tryout_registrations',  'Submitted At':'05/11/2026 10:30:00', 'Player Name':'Ethan Brown',     'Age':14, 'Date of Birth':'2011-06-17', 'Level':'Advanced',     'Parent Name':'Kevin Brown',    'Parent Phone':'4695552003', 'Parent Email':'kevin.b@email.com',    'Preferred Days':'Tuesday, Thursday',   'Preferred Time':'7:20 - 8:20 PM',           'Assigned Coach':'Coach Lulzim',  'Medical Notes':'Knee brace needed', 'Goals':'College prep / advanced tactics',  'Waiver':'Yes', 'Selected Package':'Not selected'             },
+  { _sheet:'Tryouts',       _id:4, _table:'tryout_registrations',  'Submitted At':'05/11/2026 11:00:00', 'Player Name':'Ava Wilson',      'Age':9,  'Date of Birth':'2016-10-03', 'Level':'Private',      'Parent Name':'Diane Wilson',   'Parent Phone':'4695552004', 'Parent Email':'diane.w@email.com',    'Preferred Days':'Friday',              'Preferred Time':'Private (6:15 - 7:15 PM)', 'Assigned Coach':'Coach Klaudio', 'Medical Notes':'None',              'Goals':'Fun and fitness',                  'Waiver':'Yes', 'Selected Package':'Not selected'             },
+  { _sheet:'Tryouts',       _id:5, _table:'tryout_registrations',  'Submitted At':'05/11/2026 12:00:00', 'Player Name':'Jackson Lee',     'Age':11, 'Date of Birth':'2014-02-20', 'Level':'Intermediate', 'Parent Name':'Grace Lee',      'Parent Phone':'4695552005', 'Parent Email':'grace.l@email.com',    'Preferred Days':'Thursday',            'Preferred Time':'6:15 - 7:15 PM',           'Assigned Coach':'',              'Medical Notes':'None',              'Goals':'Improve passing accuracy',         'Waiver':'Yes', 'Selected Package':'Not selected'             },
 ];
 
 const TIME_ORDER = [
@@ -43,7 +43,7 @@ const TIME_ORDER = [
 ];
 const DAY_NAMES = ['Tuesday','Wednesday','Thursday','Friday'];
 const COACHES   = ['Coach Lulzim', 'Coach Klaudio'];
-const TRYOUT_DAYS = 7;
+const TRYOUT_GRACE_DAYS = 1; // days after the first session before auto-delete
 
 let allData   = [];
 let activeTab = 'day'; // 'day' | 'all'
@@ -145,7 +145,8 @@ function fetchData() {
   content.innerHTML = '<div class="loading">Loading schedule…</div>';
 
   if (TEST_MODE) {
-    allData = FAKE_DATA;
+    allData = FAKE_DATA.slice(); // copy so autoDelete doesn't mutate the const
+    autoDeleteExpired();
     status.textContent = '⚠️ TEST MODE — ' + allData.length + ' fake records loaded. Set TEST_MODE = false for live data.';
     renderSchedule();
     return;
@@ -163,6 +164,7 @@ function fetchData() {
       .then(function(res) {
         if (res && res.status === 'ok') {
           allData = res.data;
+          autoDeleteExpired();
           status.textContent = allData.length + ' total record' + (allData.length !== 1 ? 's' : '') + ' loaded from database.';
           renderSchedule();
         } else {
@@ -187,6 +189,7 @@ function fetchData() {
     delete window.__scheduleCallback;
     if (res && res.status === 'ok') {
       allData = res.data;
+      autoDeleteExpired();
       status.textContent = allData.length + ' total record' + (allData.length !== 1 ? 's' : '') + ' loaded.';
       renderSchedule();
     } else {
@@ -309,17 +312,51 @@ function renderTimeGroups(rows) {
 }
 
 // ── HELPERS ──────────────────────────────────────────────────────────────────
-function isExpired(row) {
-  if (!row['Submitted At']) return false;
-  var submitted = new Date(row['Submitted At']);
-  var diffDays  = Math.floor((Date.now() - submitted.getTime()) / (1000 * 60 * 60 * 24));
-  return diffDays > TRYOUT_DAYS;
+
+// Returns the first scheduled training day on or after submission date
+function getFirstSessionDate(row) {
+  if (!row['Submitted At']) return null;
+  var submitted  = new Date(row['Submitted At']);
+  var dayNames   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var preferred  = String(row['Preferred Days'] || '').split(',').map(function(d){ return d.trim(); }).filter(Boolean);
+  if (!preferred.length) return submitted;
+  for (var i = 0; i < 7; i++) {
+    var candidate = new Date(submitted);
+    candidate.setDate(candidate.getDate() + i);
+    if (preferred.indexOf(dayNames[candidate.getDay()]) !== -1) return candidate;
+  }
+  return submitted;
 }
 
+// Expired = first session date + grace period has passed
+function isExpired(row) {
+  var sessionDate = getFirstSessionDate(row);
+  if (!sessionDate) return false;
+  var daysSince = Math.floor((Date.now() - sessionDate.getTime()) / (1000 * 60 * 60 * 24));
+  return daysSince > TRYOUT_GRACE_DAYS;
+}
+
+// Positive = days until session, 0 = session today, negative = days since session
 function daysLeft(row) {
-  if (!row['Submitted At']) return null;
-  var submitted = new Date(row['Submitted At']);
-  return TRYOUT_DAYS - Math.floor((Date.now() - submitted.getTime()) / (1000 * 60 * 60 * 24));
+  var sessionDate = getFirstSessionDate(row);
+  if (!sessionDate) return null;
+  return Math.ceil((sessionDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+}
+
+// Auto-delete expired tryouts from DB on dashboard load
+function autoDeleteExpired() {
+  var expired = allData.filter(function(r){ return r._sheet === 'Tryouts' && isExpired(r); });
+  if (!expired.length) return;
+  allData = allData.filter(function(r){ return !(r._sheet === 'Tryouts' && isExpired(r)); });
+  if (TEST_MODE) return; // no DB calls in test mode
+  expired.forEach(function(r) {
+    if (!r._id) return;
+    fetch('/api/delete-tryout.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: COACH_TOKEN, id: r._id })
+    }).catch(function(){});
+  });
 }
 
 function esc(str) {
@@ -346,18 +383,57 @@ function renderCards(records) {
     var table  = row._table || '';
 
     html += '<div class="player-card" data-id="' + rowId + '" data-table="' + esc(table) + '">';
+
+    // ── Card top: name + badges + edit pencil ──
     html += '<div class="card-top">';
     html += '<div class="player-name">' + esc(row['Player Name'] || '—') + '</div>';
+    html += '<div style="display:flex;align-items:center;gap:6px;">';
     html += '<span class="type-badge ' + (isReg ? 'badge-reg' : 'badge-try') + '">'
           + (isReg ? 'Registration' : 'Tryout') + '</span>';
+    html += '<button class="edit-btn" onclick="toggleEdit(this)" title="Edit player">✏️</button>';
     html += '</div>';
+    html += '</div>';
+
+    // ── Static display ──
+    html += '<div class="card-static">';
     html += '<div class="card-details">';
     html += '<span>Age: <strong>' + esc(age) + '</strong></span>';
     html += '<span>Level: <strong>' + esc(level) + '</strong></span>';
     html += '</div>';
     html += '<div class="card-days">📅 ' + esc(days) + ' &nbsp;&#9679;&nbsp; ⏰ ' + esc(time) + '</div>';
+    var pkg = String(row['Selected Package'] || '').trim();
+    if (pkg && pkg !== 'Not selected') {
+      html += '<div class="card-package">🏷️ ' + esc(pkg) + '</div>';
+    }
+    html += '</div>';
 
-    // Coach assign dropdown
+    // ── Inline edit form (hidden by default) ──
+    var currentDays = (days === '—' ? [] : days.split(',').map(function(d){ return d.trim(); }));
+    var daysHtml = ['Tuesday','Wednesday','Thursday','Friday'].map(function(d) {
+      return '<label class="day-chk"><input type="checkbox" value="' + d + '"'
+           + (currentDays.indexOf(d) !== -1 ? ' checked' : '') + '> ' + d + '</label>';
+    }).join('');
+    var timeOptions = ['6:15 - 7:15 PM','7:20 - 8:20 PM','Private (6:15 - 7:15 PM)','Private (7:20 - 8:20 PM)'];
+    var timeHtml = timeOptions.map(function(t) {
+      return '<option value="' + esc(t) + '"' + (time === t ? ' selected' : '') + '>' + esc(t) + '</option>';
+    }).join('');
+    var levelOptions = ['Beginner','Intermediate','Advanced','Private'];
+    var levelHtml = levelOptions.map(function(l) {
+      return '<option value="' + esc(l) + '"' + (level === l ? ' selected' : '') + '>' + esc(l) + '</option>';
+    }).join('');
+
+    html += '<div class="edit-form" style="display:none;" data-id="' + rowId + '" data-table="' + esc(table) + '">';
+    html += '<div class="edit-row"><label class="edit-label">Days</label><div class="day-checks">' + daysHtml + '</div></div>';
+    html += '<div class="edit-row"><label class="edit-label">Time</label><select class="edit-select" name="preferred_time">' + timeHtml + '</select></div>';
+    html += '<div class="edit-row"><label class="edit-label">Level</label><select class="edit-select" name="level">' + levelHtml + '</select></div>';
+    html += '<div class="edit-row"><label class="edit-label">Medical Notes</label><textarea class="edit-textarea" name="medical_notes">' + esc(row['Medical Notes'] || '') + '</textarea></div>';
+    html += '<div class="edit-row"><label class="edit-label">Goals</label><textarea class="edit-textarea" name="goals">' + esc(row['Goals'] || '') + '</textarea></div>';
+    html += '<div class="edit-btns"><button class="edit-save-btn" onclick="saveEdit(this)">✓ Save</button>'
+          + '<button class="edit-cancel-btn" onclick="cancelEdit(this)">✕ Cancel</button>'
+          + '<span class="edit-status"></span></div>';
+    html += '</div>';
+
+    // ── Coach assign dropdown ──
     var opts = '<option value="">&#8212; Unassigned &#8212;</option>';
     COACHES.forEach(function(c) {
       opts += '<option value="' + esc(c) + '"' + (coach === c ? ' selected' : '') + '>' + esc(c) + '</option>';
@@ -368,14 +444,28 @@ function renderCards(records) {
           + '<span class="coach-save-status"></span>'
           + '</div>';
 
-    // Tryout expiry countdown + convert button
+    // ── Tryout session countdown + convert button ──
     if (isTry) {
-      var left    = daysLeft(row);
-      var urgency = left !== null && left <= 2 ? 'color:#e74c3c;font-weight:700;' : 'color:#f39c12;';
-      var leftStr = left !== null ? left + ' day' + (left !== 1 ? 's' : '') + ' left' : '';
+      var left = daysLeft(row);
+      var countdownStr = '';
+      var urgency = 'color:#f39c12;';
+      if (left === null) {
+        countdownStr = '';
+      } else if (left > 1) {
+        countdownStr = 'Session in ' + left + ' day' + (left !== 1 ? 's' : '');
+      } else if (left === 1) {
+        countdownStr = 'Session tomorrow';
+        urgency = 'color:#f39c12;font-weight:700;';
+      } else if (left === 0) {
+        countdownStr = 'Session TODAY — convert now!';
+        urgency = 'color:#e74c3c;font-weight:700;';
+      } else {
+        countdownStr = 'Session passed — last chance to convert!';
+        urgency = 'color:#e74c3c;font-weight:700;';
+      }
       html += '<div class="tryout-actions">';
-      if (leftStr) {
-        html += '<span class="tryout-expiry" style="' + urgency + '">⏳ ' + leftStr + ' to convert</span>';
+      if (countdownStr) {
+        html += '<span class="tryout-expiry" style="' + urgency + '">⏳ ' + countdownStr + '</span>';
       }
       html += '<button class="convert-btn" onclick="convertToRegistration(this)">&#10003; Convert to Registration</button>';
       html += '</div>';
@@ -432,6 +522,93 @@ function saveCoach(btn) {
   .finally(function() { btn.disabled = false; });
 }
 
+// ── EDIT PLAYER ──────────────────────────────────────────────────────────────
+function toggleEdit(btn) {
+  var card   = btn.closest('.player-card');
+  var form   = card.querySelector('.edit-form');
+  var isOpen = form.style.display !== 'none';
+  form.style.display  = isOpen ? 'none' : 'block';
+  card.querySelector('.card-static').style.display = isOpen ? '' : 'none';
+  btn.textContent = isOpen ? '✏️' : '✕';
+}
+
+function cancelEdit(btn) {
+  var card = btn.closest('.player-card');
+  card.querySelector('.edit-form').style.display  = 'none';
+  card.querySelector('.card-static').style.display = '';
+  card.querySelector('.edit-btn').textContent = '✏️';
+}
+
+function saveEdit(btn) {
+  var form   = btn.closest('.edit-form');
+  var card   = form.closest('.player-card');
+  var id     = parseInt(form.dataset.id,    10);
+  var table  = form.dataset.table;
+  var status = form.querySelector('.edit-status');
+
+  var checkedDays    = Array.from(form.querySelectorAll('.day-chk input:checked')).map(function(cb){ return cb.value; });
+  var preferred_days = checkedDays.join(', ');
+  var preferred_time = form.querySelector('[name="preferred_time"]').value;
+  var level          = form.querySelector('[name="level"]').value;
+  var medical_notes  = form.querySelector('[name="medical_notes"]').value;
+  var goals          = form.querySelector('[name="goals"]').value;
+
+  if (!id || !table) {
+    // Test mode — update fake display only
+    status.textContent = '(test mode — not saved to DB)';
+    status.style.color = '#888';
+    allData.forEach(function(r) {
+      if (r._id === id && r._table === table) {
+        r['Preferred Days'] = preferred_days;
+        r['Preferred Time'] = preferred_time;
+        r['Level']          = level;
+        r['Medical Notes']  = medical_notes;
+        r['Goals']          = goals;
+      }
+    });
+    setTimeout(function(){ renderSchedule(); }, 800);
+    return;
+  }
+
+  btn.disabled = true;
+  status.textContent = 'Saving…';
+  status.style.color = '#888';
+
+  fetch('/api/update-player.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: COACH_TOKEN, id: id, table: table,
+      preferred_days: preferred_days, preferred_time: preferred_time,
+      level: level, medical_notes: medical_notes, goals: goals })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(res) {
+    if (res.success) {
+      status.textContent = '✓ Saved';
+      status.style.color = '#27ae60';
+      allData.forEach(function(r) {
+        if (r._id === id && r._table === table) {
+          r['Preferred Days'] = preferred_days;
+          r['Preferred Time'] = preferred_time;
+          r['Level']          = level;
+          r['Medical Notes']  = medical_notes;
+          r['Goals']          = goals;
+        }
+      });
+      setTimeout(function(){ renderSchedule(); }, 800);
+    } else {
+      status.textContent = '✗ Failed';
+      status.style.color = '#e74c3c';
+      btn.disabled = false;
+    }
+  })
+  .catch(function() {
+    status.textContent = '✗ Error';
+    status.style.color = '#e74c3c';
+    btn.disabled = false;
+  });
+}
+
 // ── EXPORT TO EXCEL ───────────────────────────────────────────────────────────
 function exportToExcel() {
   var regs    = allData.filter(function(r){ return r._sheet === 'Registrations'; });
@@ -453,9 +630,10 @@ function exportToExcel() {
         'Parent Name':    r['Parent Name']    || '',
         'Parent Phone':   r['Parent Phone']   || '',
         'Parent Email':   r['Parent Email']   || '',
-        'Medical Notes':  r['Medical Notes']  || '',
-        'Goals':          r['Goals']          || '',
-        'Waiver':         r['Waiver']         || ''
+        'Medical Notes':    r['Medical Notes']    || '',
+        'Goals':            r['Goals']            || '',
+        'Waiver':           r['Waiver']           || '',
+        'Selected Package': r['Selected Package'] || ''
       };
     });
   }

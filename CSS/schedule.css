@@ -344,6 +344,120 @@ body {
   color: var(--muted);
   margin-bottom: 6px;
 }
+/* ── EDIT BUTTON ──────────────────────────────────── */
+.edit-btn {
+  background: none;
+  border: 1px solid #444;
+  border-radius: 6px;
+  color: #aaa;
+  font-size: .85rem;
+  padding: 2px 7px;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: border-color .2s, color .2s;
+  flex-shrink: 0;
+}
+.edit-btn:hover { border-color: #cc1e2e; color: #ff6b7a; }
+
+/* ── EDIT FORM ────────────────────────────────────── */
+.edit-form {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: .75rem;
+  margin-bottom: 10px;
+}
+.edit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: .65rem;
+}
+.edit-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: #888;
+}
+.day-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.day-chk {
+  font-size: .78rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.day-chk input { accent-color: #cc1e2e; cursor: pointer; }
+.edit-select {
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 5px;
+  color: #eee;
+  font-size: .82rem;
+  padding: 5px 8px;
+}
+.edit-textarea {
+  background: #111;
+  border: 1px solid #444;
+  border-radius: 5px;
+  color: #eee;
+  font-size: .78rem;
+  padding: 6px 8px;
+  resize: vertical;
+  min-height: 52px;
+  font-family: inherit;
+}
+.edit-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: .5rem;
+}
+.edit-save-btn {
+  background: #cc1e2e;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: .8rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.edit-save-btn:hover { background: #a8172b; }
+.edit-cancel-btn {
+  background: #2a2a2a;
+  color: #aaa;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: .8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.edit-cancel-btn:hover { background: #333; }
+.edit-status {
+  font-size: .78rem;
+  margin-left: 4px;
+}
+
+.card-package {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  color: #cc1e2e;
+  background: #fff5f5;
+  border: 1px solid #f5c0c5;
+  border-radius: 4px;
+  padding: 2px 8px;
+  margin-bottom: 6px;
+}
 .card-days {
   font-size: .78rem;
   color: #666;
