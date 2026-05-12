@@ -46,6 +46,7 @@ $res = $link->query(
         medical_notes,
         goals,
         waiver_accepted,
+        COALESCE(selected_package, '')      AS selected_package,
         DATE_FORMAT(submitted_at, '%m/%d/%Y %H:%i:%s') AS submitted_at
      FROM contact_registrations
      ORDER BY submitted_at DESC"
@@ -54,23 +55,24 @@ $res = $link->query(
 if ($res) {
     while ($row = $res->fetch_assoc()) {
         $records[] = [
-            '_sheet'         => 'Registrations',
-            '_id'            => (int) $row['id'],
-            '_table'         => 'contact_registrations',
-            'Submitted At'   => $row['submitted_at'],
-            'Player Name'    => $row['player_name'],
-            'Age'            => (int) $row['age'],
-            'Date of Birth'  => $row['dob'],
-            'Level'          => $row['player_level'],
-            'Parent Name'    => $row['parent_name'],
-            'Parent Phone'   => $row['parent_phone'],
-            'Parent Email'   => $row['parent_email'],
-            'Preferred Days' => $row['preferred_days'],
-            'Preferred Time' => $row['preferred_time'],
-            'Assigned Coach' => $row['assigned_coach'],
-            'Medical Notes'  => $row['medical_notes'],
-            'Goals'          => $row['goals'],
-            'Waiver'         => $row['waiver_accepted'],
+            '_sheet'           => 'Registrations',
+            '_id'              => (int) $row['id'],
+            '_table'           => 'contact_registrations',
+            'Submitted At'     => $row['submitted_at'],
+            'Player Name'      => $row['player_name'],
+            'Age'              => (int) $row['age'],
+            'Date of Birth'    => $row['dob'],
+            'Level'            => $row['player_level'],
+            'Parent Name'      => $row['parent_name'],
+            'Parent Phone'     => $row['parent_phone'],
+            'Parent Email'     => $row['parent_email'],
+            'Preferred Days'   => $row['preferred_days'],
+            'Preferred Time'   => $row['preferred_time'],
+            'Assigned Coach'   => $row['assigned_coach'],
+            'Medical Notes'    => $row['medical_notes'],
+            'Goals'            => $row['goals'],
+            'Waiver'           => $row['waiver_accepted'],
+            'Selected Package' => $row['selected_package'],
         ];
     }
     $res->free();

@@ -11,7 +11,7 @@ const COACH_TOKEN = 'eagles-coach-2026'; // must match COACH_TOKEN in Apps Scrip
 // ── TEST MODE ─────────────────────────────────────────────────────────────────
 // Set to true to use fake data (no sheet needed). Set to false for live data.
 // NOTE: Live data requires HTTPS hosting (e.g. Netlify). Will not work from http://localhost.
-const TEST_MODE = true;
+const TEST_MODE = false;
 
 // ── DB MODE ───────────────────────────────────────────────────────────────────
 // Set to true to fetch from the Ionos MySQL database via /api/get-schedule.php.
@@ -43,7 +43,7 @@ const TIME_ORDER = [
 ];
 const DAY_NAMES = ['Tuesday','Wednesday','Thursday','Friday'];
 const COACHES   = ['Coach Lulzim', 'Coach Klaudio'];
-const TRYOUT_GRACE_DAYS = 1; // days after the first session before auto-delete
+const TRYOUT_DAYS = 7; // days from signup before tryout auto-deletes
 
 let allData   = [];
 let activeTab = 'day'; // 'day' | 'all'
@@ -313,34 +313,20 @@ function renderTimeGroups(rows) {
 
 // ── HELPERS ──────────────────────────────────────────────────────────────────
 
-// Returns the first scheduled training day on or after submission date
-function getFirstSessionDate(row) {
-  if (!row['Submitted At']) return null;
-  var submitted  = new Date(row['Submitted At']);
-  var dayNames   = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  var preferred  = String(row['Preferred Days'] || '').split(',').map(function(d){ return d.trim(); }).filter(Boolean);
-  if (!preferred.length) return submitted;
-  for (var i = 0; i < 7; i++) {
-    var candidate = new Date(submitted);
-    candidate.setDate(candidate.getDate() + i);
-    if (preferred.indexOf(dayNames[candidate.getDay()]) !== -1) return candidate;
-  }
-  return submitted;
-}
-
-// Expired = first session date + grace period has passed
+// Expired = submitted_at + 7 days has passed
 function isExpired(row) {
-  var sessionDate = getFirstSessionDate(row);
-  if (!sessionDate) return false;
-  var daysSince = Math.floor((Date.now() - sessionDate.getTime()) / (1000 * 60 * 60 * 24));
-  return daysSince > TRYOUT_GRACE_DAYS;
+  if (!row['Submitted At']) return false;
+  var submitted = new Date(row['Submitted At']);
+  var daysSince = Math.floor((Date.now() - submitted.getTime()) / (1000 * 60 * 60 * 24));
+  return daysSince > TRYOUT_DAYS;
 }
 
-// Positive = days until session, 0 = session today, negative = days since session
+// Days remaining out of 7 from signup
 function daysLeft(row) {
-  var sessionDate = getFirstSessionDate(row);
-  if (!sessionDate) return null;
-  return Math.ceil((sessionDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+  if (!row['Submitted At']) return null;
+  var submitted = new Date(row['Submitted At']);
+  var daysSince = Math.floor((Date.now() - submitted.getTime()) / (1000 * 60 * 60 * 24));
+  return TRYOUT_DAYS - daysSince;
 }
 
 // Auto-delete expired tryouts from DB on dashboard load
@@ -395,16 +381,13 @@ function renderCards(records) {
     html += '</div>';
 
     // ── Static display ──
+    var pkg = String(row['Selected Package'] || '').trim();
     html += '<div class="card-static">';
     html += '<div class="card-details">';
     html += '<span>Age: <strong>' + esc(age) + '</strong></span>';
     html += '<span>Level: <strong>' + esc(level) + '</strong></span>';
     html += '</div>';
     html += '<div class="card-days">📅 ' + esc(days) + ' &nbsp;&#9679;&nbsp; ⏰ ' + esc(time) + '</div>';
-    var pkg = String(row['Selected Package'] || '').trim();
-    if (pkg && pkg !== 'Not selected') {
-      html += '<div class="card-package">🏷️ ' + esc(pkg) + '</div>';
-    }
     html += '</div>';
 
     // ── Inline edit form (hidden by default) ──
@@ -444,6 +427,10 @@ function renderCards(records) {
           + '<span class="coach-save-status"></span>'
           + '</div>';
 
+    if (pkg && pkg !== 'Not selected') {
+      html += '<div class="card-package">🏷️ ' + esc(pkg) + '</div>';
+    }
+
     // ── Tryout session countdown + convert button ──
     if (isTry) {
       var left = daysLeft(row);
@@ -451,17 +438,20 @@ function renderCards(records) {
       var urgency = 'color:#f39c12;';
       if (left === null) {
         countdownStr = '';
-      } else if (left > 1) {
-        countdownStr = 'Session in ' + left + ' day' + (left !== 1 ? 's' : '');
-      } else if (left === 1) {
-        countdownStr = 'Session tomorrow';
+      } else if (left > 2) {
+        countdownStr = left + ' days left to convert';
+      } else if (left === 2) {
+        countdownStr = '2 days left — convert soon!';
         urgency = 'color:#f39c12;font-weight:700;';
+      } else if (left === 1) {
+        countdownStr = '1 day left — last chance!';
+        urgency = 'color:#e74c3c;font-weight:700;';
       } else if (left === 0) {
-        countdownStr = 'Session TODAY — convert now!';
+        countdownStr = 'Expires today — convert now!';
         urgency = 'color:#e74c3c;font-weight:700;';
       } else {
-        countdownStr = 'Session passed — last chance to convert!';
-        urgency = 'color:#e74c3c;font-weight:700;';
+        countdownStr = 'Expired';
+        urgency = 'color:#888;';
       }
       html += '<div class="tryout-actions">';
       if (countdownStr) {
