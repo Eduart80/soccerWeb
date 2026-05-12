@@ -43,7 +43,16 @@
   <p class="section-sub">Complete the form below. When you submit, your email app will open and send the registration details 
     to Eagle Stars Soccer Academy. Payments instruction will come to you on the welcom email.</p>
 
+  <div id="package-banner" style="display:none; background:#fff5f5; border:1.5px solid #cc1e2e; border-radius:8px; padding:1rem 1.5rem; margin-bottom:1.5rem; display:flex; align-items:center; gap:.75rem;">
+    <span style="font-size:1.4rem;">🏷️</span>
+    <div>
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:1px; color:#cc1e2e;">SELECTED PACKAGE</div>
+      <div id="package-banner-text" style="font-weight:600; color:#111; font-size:1rem;"></div>
+    </div>
+  </div>
+
   <form id="registration-form">
+    <input type="hidden" name="Selected Package" id="selected-package" />
     <div><label>Player First Name</label><input name="Player First Name" required /></div>
     <div><label>Player Last Name</label><input name="Player Last Name" required /></div>
     <div><label>Player Age</label><input name="Player Age" type="number" min="5" max="16" required /></div>

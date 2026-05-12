@@ -56,7 +56,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     medical_notes:  f['Medical Notes'].value,
     goals:          f['Goals'].value,
     waiver:         f['Waiver Accepted'].checked ? 'Yes' : 'No',
-    form_type:      'Free 7-Day Tryout'
+    form_type:      'Session Booked'
   };
 
   const emailData = {
@@ -94,7 +94,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
   });
 
   saveToSheets({
-    form_type:      'Free 7-Day Tryout',
+    form_type:      'Session Booked',
     player_name:    data.first_name + ' ' + data.last_name,
     player_age:     data.age,
     dob:            data.dob,

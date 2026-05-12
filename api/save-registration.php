@@ -33,8 +33,8 @@ require_once 'db.php';
 $stmt = $link->prepare(
     'INSERT INTO contact_registrations
         (first_name, last_name, age, dob, parent_name, parent_phone, parent_email,
-         player_level, preferred_days, preferred_time, assigned_coach, medical_notes, goals, waiver_accepted)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+         player_level, preferred_days, preferred_time, assigned_coach, medical_notes, goals, waiver_accepted, selected_package)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
 );
 
 if (!$stmt) {
@@ -56,13 +56,14 @@ $preferred_time = htmlspecialchars(trim($data['preferred_time'] ?? ''), ENT_QUOT
 $assigned_coach = htmlspecialchars(trim($data['assigned_coach'] ?? ''), ENT_QUOTES, 'UTF-8');
 $medical_notes  = htmlspecialchars(trim($data['medical_notes'] ?? ''), ENT_QUOTES, 'UTF-8');
 $goals          = htmlspecialchars(trim($data['goals'] ?? ''), ENT_QUOTES, 'UTF-8');
-$waiver         = ($data['waiver'] ?? 'No') === 'Yes' ? 'Yes' : 'No';
+$waiver           = ($data['waiver'] ?? 'No') === 'Yes' ? 'Yes' : 'No';
+$selected_package = htmlspecialchars(trim($data['selected_package'] ?? ''), ENT_QUOTES, 'UTF-8');
 
 $stmt->bind_param(
-    'ssisssssssssss',
+    'ssissssssssssss',
     $first_name, $last_name, $age, $dob, $parent_name, $parent_phone,
     $parent_email, $level, $preferred_days, $preferred_time,
-    $assigned_coach, $medical_notes, $goals, $waiver
+    $assigned_coach, $medical_notes, $goals, $waiver, $selected_package
 );
 
 if ($stmt->execute()) {
