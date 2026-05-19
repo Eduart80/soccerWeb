@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 $allowed = ['https://eaglestarssc.com', 'https://www.eaglestarssc.com'];
 $origin  = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -27,14 +28,13 @@ if (!$data) {
     exit;
 }
 
-require_once 'db.php';
-
-$COACH_TOKEN = 'eagles-coach-2026';
-if (($data['token'] ?? '') !== $COACH_TOKEN) {
-    http_response_code(403);
+if (empty($_SESSION['coach_auth'])) {
+    http_response_code(401);
     echo json_encode(['success' => false, 'error' => 'Unauthorized.']);
     exit;
 }
+
+require_once 'db.php';
 
 $id    = isset($data['id'])    ? (int) $data['id'] : 0;
 $table = isset($data['table']) ? $data['table']     : '';

@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 $allowed = ['https://eaglestarssc.com', 'https://www.eaglestarssc.com'];
 $origin  = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -24,8 +25,8 @@ if (!$data) {
     exit;
 }
 
-if (($data['token'] ?? '') !== 'eagles-coach-2026') {
-    http_response_code(403);
+if (empty($_SESSION['coach_auth'])) {
+    http_response_code(401);
     echo json_encode(['success' => false, 'error' => 'Unauthorized.']);
     exit;
 }

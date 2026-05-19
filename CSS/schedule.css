@@ -446,6 +446,20 @@ body {
   font-size: .78rem;
   margin-left: 4px;
 }
+.remove-btn {
+  background: #2a2a2a;
+  color: #cc1e2e;
+  border: 1px solid #cc1e2e;
+  border-radius: 5px;
+  font-size: .8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.remove-btn:hover {
+  background: #cc1e2e;
+  color: #fff;
+}
 
 .card-package {
   display: inline-block;

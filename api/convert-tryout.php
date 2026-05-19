@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 $allowed = ['https://eaglestarssc.com', 'https://www.eaglestarssc.com'];
 $origin  = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -18,10 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $raw  = file_get_contents('php://input');
 $data = json_decode($raw, true);
 
-$token = $data['token'] ?? '';
-if ($token !== 'eagles-coach-2026') {
-    http_response_code(403);
-    echo json_encode(['success' => false, 'error' => 'Access denied.']);
+if (empty($_SESSION['coach_auth'])) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'error' => 'Unauthorized.']);
     exit;
 }
 

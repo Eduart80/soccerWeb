@@ -1,12 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Eagle Stars Soccer Academy — Coach Schedule
-//
-// IMPORTANT: Set COACH_TOKEN to the same value as COACH_TOKEN in
-//            google-apps-script.js  (default: 'eagles-coach-2026')
 // ─────────────────────────────────────────────────────────────────────────────
 
-const SHEETS_URL  = 'https://script.google.com/macros/s/AKfycbyQjVvBQaKi8K0JQUdLWcB4GzixkUR4JDJ3WOvFC9j_pAyfjg0dDoP7488MGQxplNX3/exec';
-const COACH_TOKEN = 'eagles-coach-2026'; // must match COACH_TOKEN in Apps Script
+const TEST_PASSWORD = 'eagles-coach-2026'; // only used locally when TEST_MODE = true
 
 // ── TEST MODE ─────────────────────────────────────────────────────────────────
 // Set to true to use fake data (no sheet needed). Set to false for live data.
@@ -55,19 +51,66 @@ document.getElementById('pwd-input').addEventListener('keypress', function(e) {
 });
 
 function handleLogin() {
-  const pwd = document.getElementById('pwd-input').value;
-  if (pwd === COACH_TOKEN) {
-    document.getElementById('login-screen').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    initDashboard();
-  } else {
-    document.getElementById('login-error').textContent = 'Incorrect access code. Try again.';
-    document.getElementById('pwd-input').value = '';
-    document.getElementById('pwd-input').focus();
+  var pwd = document.getElementById('pwd-input').value;
+  var btn = document.getElementById('login-btn');
+  var err = document.getElementById('login-error');
+
+  if (TEST_MODE) {
+    if (pwd === TEST_PASSWORD) {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      initDashboard();
+    } else {
+      err.textContent = 'Incorrect access code. Try again.';
+      document.getElementById('pwd-input').value = '';
+      document.getElementById('pwd-input').focus();
+    }
+    return;
   }
+
+  btn.disabled = true;
+  err.textContent = '';
+
+  fetch('/api/login.php', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: pwd })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.success) {
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('dashboard').classList.remove('hidden');
+      initDashboard();
+    } else {
+      err.textContent = 'Incorrect access code. Try again.';
+      document.getElementById('pwd-input').value = '';
+      document.getElementById('pwd-input').focus();
+      btn.disabled = false;
+    }
+  })
+  .catch(function() {
+    err.textContent = 'Server error — try again.';
+    btn.disabled = false;
+  });
+}
+
+// ── SESSION CHECK (auto-login if session cookie exists) ───────────────────────
+if (!TEST_MODE) {
+  fetch('/api/check-session.php')
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.authenticated) {
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('dashboard').classList.remove('hidden');
+        initDashboard();
+      }
+    })
+    .catch(function(){});
 }
 
 document.getElementById('logout-btn').addEventListener('click', function() {
+  if (!TEST_MODE) fetch('/api/logout.php', { method: 'POST' }).catch(function(){});
   allData    = [];
   activeTab  = 'day';
   document.getElementById('dashboard').classList.add('hidden');
@@ -156,7 +199,7 @@ function fetchData() {
 
   // ── DB path (Ionos MySQL via PHP) ─────────────────────────────────────────
   if (DB_MODE) {
-    fetch(DB_API_URL + '?token=' + encodeURIComponent(COACH_TOKEN))
+    fetch(DB_API_URL)
       .then(function(response) {
         if (!response.ok) { throw new Error('HTTP ' + response.status); }
         return response.json();
@@ -169,7 +212,7 @@ function fetchData() {
           renderSchedule();
         } else {
           status.textContent = '';
-          content.innerHTML = '<div class="empty-state">Access denied — check that COACH_TOKEN matches in schedule.js and api/get-schedule.php.</div>';
+          content.innerHTML = '<div class="empty-state">Session expired — please refresh and log in again.</div>';
         }
       })
       .catch(function() {
@@ -340,7 +383,7 @@ function autoDeleteExpired() {
     fetch('/api/delete-tryout.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: COACH_TOKEN, id: r._id })
+      body: JSON.stringify({ id: r._id })
     }).catch(function(){});
   });
 }
@@ -405,16 +448,18 @@ function renderCards(records) {
       return '<option value="' + esc(l) + '"' + (level === l ? ' selected' : '') + '>' + esc(l) + '</option>';
     }).join('');
 
-    html += '<div class="edit-form" style="display:none;" data-id="' + rowId + '" data-table="' + esc(table) + '">';
-    html += '<div class="edit-row"><label class="edit-label">Days</label><div class="day-checks">' + daysHtml + '</div></div>';
-    html += '<div class="edit-row"><label class="edit-label">Time</label><select class="edit-select" name="preferred_time">' + timeHtml + '</select></div>';
-    html += '<div class="edit-row"><label class="edit-label">Level</label><select class="edit-select" name="level">' + levelHtml + '</select></div>';
-    html += '<div class="edit-row"><label class="edit-label">Medical Notes</label><textarea class="edit-textarea" name="medical_notes">' + esc(row['Medical Notes'] || '') + '</textarea></div>';
-    html += '<div class="edit-row"><label class="edit-label">Goals</label><textarea class="edit-textarea" name="goals">' + esc(row['Goals'] || '') + '</textarea></div>';
-    html += '<div class="edit-btns"><button class="edit-save-btn" onclick="saveEdit(this)">✓ Save</button>'
+        html += '<div class="edit-form" style="display:none;" data-id="' + rowId + '" data-table="' + esc(table) + '">';
+        html += '<div class="edit-row"><label class="edit-label">Days</label><div class="day-checks">' + daysHtml + '</div></div>';
+        html += '<div class="edit-row"><label class="edit-label">Time</label><select class="edit-select" name="preferred_time">' + timeHtml + '</select></div>';
+        html += '<div class="edit-row"><label class="edit-label">Level</label><select class="edit-select" name="level">' + levelHtml + '</select></div>';
+        html += '<div class="edit-row"><label class="edit-label">Medical Notes</label><textarea class="edit-textarea" name="medical_notes">' + esc(row['Medical Notes'] || '') + '</textarea></div>';
+        html += '<div class="edit-row"><label class="edit-label">Goals</label><textarea class="edit-textarea" name="goals">' + esc(row['Goals'] || '') + '</textarea></div>';
+        html += '<div class="edit-btns">'
+          + '<button class="edit-save-btn" onclick="saveEdit(this)">✓ Save</button>'
           + '<button class="edit-cancel-btn" onclick="cancelEdit(this)">✕ Cancel</button>'
+          + '<button class="remove-btn" onclick="removePlayer(this)">🗑️ Remove</button>'
           + '<span class="edit-status"></span></div>';
-    html += '</div>';
+        html += '</div>';
 
     // ── Coach assign dropdown ──
     var opts = '<option value="">&#8212; Unassigned &#8212;</option>';
@@ -471,6 +516,56 @@ function renderCards(records) {
   return html;
 }
 
+// ── REMOVE PLAYER ────────────────────────────────────────────────────────────
+function removePlayer(btn) {
+  var form   = btn.closest('.edit-form');
+  var card   = form.closest('.player-card');
+  var id     = parseInt(form.dataset.id, 10);
+  var table  = form.dataset.table;
+  var status = form.querySelector('.edit-status');
+
+  if (TEST_MODE || !id || !table) {
+    status.textContent = '(test mode — not removed from DB)';
+    status.style.color = '#888';
+    card.style.opacity = '0.4';
+    card.style.pointerEvents = 'none';
+    return;
+  }
+
+  if (!confirm('Are you sure you want to remove this player? This cannot be undone.')) return;
+
+  btn.disabled = true;
+  status.textContent = 'Removing…';
+  status.style.color = '#888';
+
+  var api = (table === 'tryout_registrations') ? '/api/delete-tryout.php' : '/api/delete-registration.php';
+  fetch(api, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: id })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(res) {
+    if (res.success) {
+      status.textContent = '✓ Removed';
+      status.style.color = '#27ae60';
+      card.style.opacity = '0.4';
+      card.style.pointerEvents = 'none';
+      allData = allData.filter(function(r) { return !(r._id === id && r._table === table); });
+      setTimeout(function(){ renderSchedule(); }, 800);
+    } else {
+      status.textContent = '✗ Failed';
+      status.style.color = '#e74c3c';
+      btn.disabled = false;
+    }
+  })
+  .catch(function() {
+    status.textContent = '✗ Error';
+    status.style.color = '#e74c3c';
+    btn.disabled = false;
+  });
+}
+
 // ── SAVE COACH ────────────────────────────────────────────────────────────────
 function saveCoach(btn) {
   var card   = btn.closest('.player-card');
@@ -493,7 +588,7 @@ function saveCoach(btn) {
   fetch('/api/update-coach.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: COACH_TOKEN, id: id, table: table, coach: coach })
+    body: JSON.stringify({ id: id, table: table, coach: coach })
   })
   .then(function(r) { return r.json(); })
   .then(function(res) {
@@ -567,7 +662,7 @@ function saveEdit(btn) {
   fetch('/api/update-player.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: COACH_TOKEN, id: id, table: table,
+    body: JSON.stringify({ id: id, table: table,
       preferred_days: preferred_days, preferred_time: preferred_time,
       level: level, medical_notes: medical_notes, goals: goals })
   })
@@ -648,7 +743,7 @@ function convertToRegistration(btn) {
   var card = btn.closest('.player-card');
   var id   = parseInt(card.dataset.id, 10);
 
-  if (!id) {
+  if (TEST_MODE || !id) {
     alert('(test mode — no action taken)');
     return;
   }
@@ -661,7 +756,7 @@ function convertToRegistration(btn) {
   fetch('/api/convert-tryout.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: COACH_TOKEN, id: id })
+    body: JSON.stringify({ id: id })
   })
   .then(function(r) { return r.json(); })
   .then(function(res) {

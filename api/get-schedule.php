@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 $allowed = ['https://eaglestarssc.com', 'https://www.eaglestarssc.com'];
 $origin  = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
@@ -14,13 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // ── AUTH ──────────────────────────────────────────────────────────────────────
-// Must match COACH_TOKEN in schedule.js
-define('COACH_TOKEN', 'eagles-coach-2026');
-
-$token = isset($_GET['token']) ? $_GET['token'] : '';
-if ($token !== COACH_TOKEN) {
-    http_response_code(403);
-    echo json_encode(['status' => 'error', 'message' => 'Access denied.']);
+if (empty($_SESSION['coach_auth'])) {
+    http_response_code(401);
+    echo json_encode(['status' => 'error', 'message' => 'Unauthorized.']);
     exit;
 }
 
