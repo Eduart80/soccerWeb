@@ -18,7 +18,7 @@ nav {
   position: fixed; top: 0; width: 100%; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 16px 6%;
-  background: linear-gradient(to bottom, #f6f6f6 40%, rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(to bottom, #f6f6f6 50%, rgba(255, 255, 255, 0.05) 100%);
 }
 .nav-logo { display: flex; align-items: center; gap: 10px; }
 .nav-logo img { height: 44px; width: 44px; border-radius: 35px; } /*object-fit: contain;*/
