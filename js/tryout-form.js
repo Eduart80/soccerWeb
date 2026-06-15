@@ -67,13 +67,14 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     player_age:     data.age,
     player_level:   data.level,
     parent_phone:   data.parent_phone,
-    preferred_days: data.preferred_days,
-    preferred_time: data.preferred_time,
-    referral:       data.referral,
-    goals:          data.goals,
-    medical_notes:  data.medical_notes,
-    waiver:         data.waiver,
-    reply_to:       data.parent_email
+    preferred_days:   data.preferred_days,
+    preferred_time:   data.preferred_time,
+    selected_package: 'Free Tryout',
+    referral:         data.referral,
+    goals:            data.goals,
+    medical_notes:    data.medical_notes,
+    waiver:           data.waiver,
+    reply_to:         data.parent_email
   };
 
   saveToDB({

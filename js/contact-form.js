@@ -71,7 +71,7 @@ document.getElementById('registration-form').addEventListener('submit', function
     medical_notes:    f['Medical Notes'].value,
     goals:            f['Soccer Goals'].value,
     waiver:           f['Waiver Accepted'].checked ? 'Yes' : 'No',
-    selected_package: f['Selected Package'].value || 'Not selected'
+    selected_package: f['Selected Package'].value || 'Free Tryout'
   };
 
   const emailData = {
