@@ -34,7 +34,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
   const levelVal = f['Player Level'].value;
   function getDaysFromLevel(lvl) {
     if (lvl === 'Private') return 'Friday';
-    return 'Tuesday, Wednesday, Thursday';
+    return 'Monday, Tuesday, Wednesday, Thursday';
   }
   function getTimeFromLevel(lvl) {
     if (lvl === 'Advanced') return '7:20 - 8:20 PM';
@@ -69,7 +69,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     parent_phone:   data.parent_phone,
     preferred_days:   data.preferred_days,
     preferred_time:   data.preferred_time,
-    selected_package: 'Free Tryout',
+    selected_package: f['Selected Package'].value || 'Free Tryout Session',
     referral:         data.referral,
     goals:            data.goals,
     medical_notes:    data.medical_notes,

@@ -50,7 +50,7 @@ document.getElementById('registration-form').addEventListener('submit', function
   const levelVal = f['Player Level'].value;
   function getDaysFromLevel(lvl) {
     if (lvl === 'Private') return 'Friday';
-    return 'Tuesday, Wednesday, Thursday';
+    return 'Monday, Tuesday, Wednesday, Thursday';
   }
   function getTimeFromLevel(lvl) {
     if (lvl === 'Advanced') return '7:20 - 8:20 PM';
