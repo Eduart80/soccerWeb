@@ -69,7 +69,7 @@ document.getElementById('tryout-form').addEventListener('submit', function(e) {
     parent_phone:   data.parent_phone,
     preferred_days:   data.preferred_days,
     preferred_time:   data.preferred_time,
-    selected_package: f['Selected Package'].value || 'Free Tryout Session',
+    selected_package: 'Free Tryout Session',
     referral:         data.referral,
     goals:            data.goals,
     medical_notes:    data.medical_notes,
